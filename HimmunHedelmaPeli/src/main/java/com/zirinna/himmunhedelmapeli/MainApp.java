@@ -1,10 +1,14 @@
 package com.zirinna.himmunhedelmapeli;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
 
@@ -12,16 +16,36 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        Group root = new Group();
         
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-        
-        stage.setTitle("JavaFX and Maven");
+        Canvas canvas = new Canvas(640, 480);
+        final GraphicsContext gc = canvas.getGraphicsContext2D();
+        root.getChildren().add(canvas);
+        stage.setTitle("Himmun hedelmäpeli");
         stage.setScene(scene);
         stage.show();
-        GameLogic testiKanvas = new GameLogic();
-        testiKanvas.printBoard();
+        
+        final GameLogic game = new GameLogic();
+        //game.printBoard();
+        
+        //main loop
+        
+        new AnimationTimer() {
+            @Override
+            public void handle(long time) {
+                drawThings(gc, game);
+                doThings(game);
+            }
+        }.start();
+    }
+    
+    private void drawThings(GraphicsContext gc, GameLogic game) {
+        game.drawEverything(gc, game);
+    }
+    
+    private void doThings(GameLogic game) {
+        //TODO later
     }
 
     /**

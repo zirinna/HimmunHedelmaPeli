@@ -6,6 +6,8 @@
 package com.zirinna.himmunhedelmapeli;
 
 import java.util.Random;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -39,6 +41,9 @@ public class GameLogic {
         }
     }
     
+    /**
+     * printing the gameboard to console
+     */
     public void printBoard() {
         for(int i = 0; i < this.board.getBoardSize(); i++) {
             String rivi = "";
@@ -49,4 +54,14 @@ public class GameLogic {
         }
         
     }
+    
+    public void drawEverything(GraphicsContext gc, GameLogic game) {
+        for(int x = 0; x < this.board.getBoardSize(); x++) {
+            for(int y = 0; y < this.board.getBoardSize(); y++) {
+                Image image = this.board.getFruit(x, y).getFruitImage();
+                gc.drawImage(image, x*image.getWidth(), y*image.getHeight());
+            }
+        }
+    }
+    
 }
