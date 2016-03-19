@@ -41,6 +41,7 @@ public class MainApp extends Application {
     }
     
     private void drawThings(GraphicsContext gc, GameLogic game) {
+        gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
         game.drawEverything(gc, game);
     }
     
