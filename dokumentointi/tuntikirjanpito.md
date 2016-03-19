@@ -1,4 +1,4 @@
-#tuntikirjanpito
+﻿#tuntikirjanpito
 
 päivä | tunnit | kuvaus
 ------------------ | ------ | ----------------------
@@ -6,3 +6,4 @@ päivä | tunnit | kuvaus
 16.3.2016 | 0.5h | github-tilin henkiin herättelyä
 18.3.2016 | 2h | git-säätöä, repon luominen ja aiheen valinta
 18.3.2016 | 2h | pelin koodaus aloitettu
+19.3.2016 | 3h | javafx-apuja kotitontulta, hedelmien piirto näytölle
