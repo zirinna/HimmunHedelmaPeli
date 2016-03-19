@@ -34,6 +34,7 @@ public class MainApp extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long time) {
+                game.removeFruit(3,2);
                 drawThings(gc, game);
                 doThings(game);
             }

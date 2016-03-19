@@ -64,4 +64,12 @@ public class GameLogic {
         }
     }
     
+    // "removes" the fruit, which means that the fruittype is set to "REM"...
+    public void removeFruit(int x, int y) {
+        Fruit fruit = new Fruit(FruitType.REM);
+        board.setFruit(x, y, fruit);
+    }
+    
+    
+    
 }
