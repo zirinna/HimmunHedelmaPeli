@@ -7,3 +7,4 @@ päivä | tunnit | kuvaus
 18.3.2016 | 2h | git-säätöä, repon luominen ja aiheen valinta
 18.3.2016 | 2h | pelin koodaus aloitettu
 19.3.2016 | 3h | javafx-apuja kotitontulta, hedelmien piirto näytölle
+19.3.2016 | 2h | hedelmän poisto laudalta, rakenteen tuskastelua
