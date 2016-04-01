@@ -8,3 +8,7 @@ Himmun Hedelmäpeli on bejeweled-tyylinen peli, jossa pelaaja yrittää saada ko
 * pelaaja voi syödä kentältä yksittäisen hedelmän
 * pelaaja voi lopettaa pelin kesken
 * ...
+* 
+##Luokkakaavio
+
+
