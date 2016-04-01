@@ -29,7 +29,10 @@ public class Tile {
     public Fruit getFruit() {
         return this.fruit;
     }
-    
+    /**
+     * draws the tile and the fruit on the tile, if the tile has a fruit
+     * @param gc the graphicscontext to draw the tile on
+     */
     public void drawTile(GraphicsContext gc) {
         if (this.fruit == null) {
             return;
@@ -37,7 +40,9 @@ public class Tile {
         Image image = this.fruit.getFruitImage();
         gc.drawImage(image, x*image.getWidth(), y*image.getHeight());
     }
-    
+    /**
+     * clears the tile by setting the fruit to null
+     */
     public void clearTile() {
         this.fruit = null;
     }

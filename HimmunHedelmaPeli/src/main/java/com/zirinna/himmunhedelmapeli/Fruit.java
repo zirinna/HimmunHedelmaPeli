@@ -28,7 +28,6 @@ public class Fruit {
                 break;
             case KIWI: this.image = new Image("/images/kiwi.png");
                 break;
-            case REM: this.image = new Image("/images/removed.png");
             default: break;
         }
     }

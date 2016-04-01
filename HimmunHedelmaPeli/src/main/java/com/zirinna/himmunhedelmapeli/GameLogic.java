@@ -29,6 +29,11 @@ public class GameLogic {
     
     }
     
+    /**
+     * generates a random fruit. Each fruit has the same chance of being generated
+     * @return returns the randomly generated fruit
+     */
+    
     private Fruit generateRandomFruit() {
         Random rnd = new Random();
         int fruitNumber = rnd.nextInt(3);
@@ -53,8 +58,11 @@ public class GameLogic {
         }
         
     }
-    
-    public void drawEverything(GraphicsContext gc, GameLogic game) {
+    /**
+     * tells all the tiles on the board to draw themselves on the graphicscontext
+     * @param gc graphicscontext to draw the tiles on
+     */
+    public void drawEverything(GraphicsContext gc) {
         for(int x = 0; x < this.board.getBoardSize(); x++) {
             for(int y = 0; y < this.board.getBoardSize(); y++) {
                 this.board.getTile(x, y).drawTile(gc);
@@ -62,9 +70,12 @@ public class GameLogic {
         }
     }
     
-    // "removes" the fruit, which means that the fruittype is set to "REM"...
+    /**
+     * clears the tile
+     * @param x Tile's x-coordinate
+     * @param y Tile's y-coordinate
+     */
     public void removeFruit(int x, int y) {
-        Fruit fruit = new Fruit(FruitType.REM);
         board.getTile(x, y).clearTile();
     }
     

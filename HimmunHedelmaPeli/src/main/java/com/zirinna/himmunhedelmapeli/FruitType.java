@@ -13,7 +13,6 @@ public enum FruitType {
     
     BANANA,
     APPLE,
-    KIWI,
-    REM;
+    KIWI;
     
 }

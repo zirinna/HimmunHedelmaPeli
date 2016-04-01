@@ -40,10 +40,14 @@ public class MainApp extends Application {
             }
         }.start();
     }
-    
+    /**
+     * tells the board to draw itself
+     * @param gc graphicscontext to draw things on
+     * @param game current game
+     */
     private void drawThings(GraphicsContext gc, GameLogic game) {
         gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-        game.drawEverything(gc, game);
+        game.drawEverything(gc);
     }
     
     private void doThings(GameLogic game) {
