@@ -46,4 +46,8 @@ public class Tile {
     public void clearTile() {
         this.fruit = null;
     }
+
+    public Object getFuirt() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
