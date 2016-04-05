@@ -10,5 +10,6 @@ Himmun Hedelmäpeli on bejeweled-tyylinen peli, jossa pelaaja yrittää saada ko
 * ...
 
 ##Luokkakaavio
+![luokkakaavio](/luokkakaavioHimmunHedelmaPeli.png)
 
 
