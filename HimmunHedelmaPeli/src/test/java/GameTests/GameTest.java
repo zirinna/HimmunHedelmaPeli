@@ -14,7 +14,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Rule;
 
 /**
  *
@@ -24,6 +24,9 @@ public class GameTest {
     
     public GameTest() {
     }
+    
+    @Rule 
+    public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
     
     @BeforeClass
     public static void setUpClass() {
@@ -42,48 +45,48 @@ public class GameTest {
     }
 
     @Test
-public void tileWithFruitIsNotEmpty() {
-	Tile tile = new Tile(0,0);
-	tile.setFruit(new Fruit(FruitType.APPLE));
-	assert(tile.getFruit() != null);
-}
+    public void tileWithFruitIsNotEmpty() {
+            Tile tile = new Tile(0,0);
+            tile.setFruit(new Fruit(FruitType.APPLE));
+            assert(tile.getFruit() != null);
+    }
 
 
-@Test
-public void clearingTileRemovesTheFruitInIt() {
-	Tile tile = new Tile(0,0);
-	tile.setFruit(new Fruit(FruitType.KIWI));
-	tile.clearTile();
-	assert(tile.getFruit() == null);
-}
+    @Test
+    public void clearingTileRemovesTheFruitInIt() {
+            Tile tile = new Tile(0,0);
+            tile.setFruit(new Fruit(FruitType.KIWI));
+            tile.clearTile();
+            assert(tile.getFruit() == null);
+    }
 
 
-@Test
-public void newlyCreatedFruitHasImage() {
-	Fruit f = new Fruit(FruitType.APPLE);
-	assert(f.getFruitImage() != null);
-}
+    @Test
+    public void newlyCreatedFruitHasImage() {
+            Fruit f = new Fruit(FruitType.APPLE);
+            assert(f.getFruitImage() != null);
+    }
 
-@Test
-public void fruitToStringMatchesFruitType() {
-	Fruit f = new Fruit(FruitType.KIWI);
-	assert(f.toString().equals("KIWI"));
-}
+    @Test
+    public void fruitToStringMatchesFruitType() {
+            Fruit f = new Fruit(FruitType.KIWI);
+            assert(f.toString().equals("KIWI"));
+    }
 
 
-@Test
-public void tilesCantBePlacedOutsideGameBoard() {
-	int n = 6;
-	GameBoard gb = new GameBoard(n);
-	Tile t = new Tile(n+1, n+1);
-	gb.setTile(n+1, n+1, t); //This might crash result in fail (array out of bounds)
-}
+    @Test
+    public void tilesCantBePlacedOutsideGameBoard() {
+            int n = 6;
+            GameBoard gb = new GameBoard(n);
+            Tile t = new Tile(n+1, n+1);
+            gb.setTile(n+1, n+1, t); //This might crash result in fail (array out of bounds)
+    }
 
-@Test
-public void gameboardSizeMatchesInitialGenerationParameters() {
-	int n = 6;
-	GameBoard gb = new GameBoard(n);
-	assert(gb.getBoardSize() == n);
-}
+    @Test
+    public void gameboardSizeMatchesInitialGenerationParameters() {
+            int n = 6;
+            GameBoard gb = new GameBoard(n);
+            assert(gb.getBoardSize() == n);
+    }
 }
 
