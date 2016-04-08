@@ -21,7 +21,7 @@ public class Fruit {
     }
     
     private void setImageByType() {
-        switch(this.type) {
+        switch (this.type) {
             case BANANA: this.image = new Image("/images/banana.png");
                 break;
             case APPLE: this.image = new Image("/images/apple.png");

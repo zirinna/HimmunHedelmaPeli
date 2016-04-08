@@ -37,14 +37,13 @@ public class MainApp extends Application {
         
         //setup listeners
         scene.setOnMouseClicked(
-        new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent e)
-            {
-                mouseEvents.push(e);
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent e) {
+                    mouseEvents.push(e);
+                }
             }
-        });
+        );
         
         //main loop
         new AnimationTimer() {

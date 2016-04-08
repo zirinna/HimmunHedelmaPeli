@@ -19,8 +19,8 @@ public class GameBoard {
     }
     
     private void generateBoard() {
-        for(int x = 0; x < this.gameboard.length; x++) {
-            for(int y = 0; y < this.gameboard.length; y++) {
+        for (int x = 0; x < this.gameboard.length; x++) {
+            for (int y = 0; y < this.gameboard.length; y++) {
                 gameboard[x][y] = new Tile(x, y);
             }
         }

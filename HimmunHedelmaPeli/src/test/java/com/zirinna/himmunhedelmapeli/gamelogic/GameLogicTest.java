@@ -6,6 +6,8 @@
 package com.zirinna.himmunhedelmapeli.gamelogic;
 
 import com.zirinna.himmunhedelmapeli.JavaFXThreadingRule;
+import com.zirinna.himmunhedelmapeli.gameobjects.Fruit;
+import com.zirinna.himmunhedelmapeli.gameobjects.FruitType;
 import com.zirinna.himmunhedelmapeli.gameobjects.GameBoard;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,6 +53,52 @@ public class GameLogicTest {
             }
         }
             
+    }
+    
+    @Test
+    public void findEmptyTileFindsEmptyTile() {
+        this.logic.getGameBoard().getTile(2, 2).clearTile();
+        assert(this.logic.findEmptyTile() != null);
+    }
+    
+    @Test
+    public void findEmptyTileDoesNotFindEmptyTilesIfThereAreNoEmptyTiles() {
+        assert(this.logic.findEmptyTile() == null);
+    }
+    
+    @Test
+    public void afterUpdatingTheBoardThereAreNoEmptyTiles() {
+        this.logic.getGameBoard().getTile(3, 2).clearTile();
+        this.logic.updateBoard();
+        assert(this.logic.findEmptyTile() == null);
+    }
+    
+    @Test
+    public void theRightFruitDropsDown() {
+        this.logic.getGameBoard().getTile(3, 3).clearTile();
+        Fruit f = this.logic.getGameBoard().getTile(3, 2).getFruit();
+        this.logic.updateBoard();
+        assert(this.logic.getGameBoard().getTile(3, 3).getFruit().equals(f));
+    }
+    
+    @Test
+    public void emptySpotOnTheTopRowIsFilledWithANewlyGeneratedRandomFruit() {
+        this.logic.getGameBoard().getTile(3, 0).clearTile();
+        this.logic.updateBoard();
+        assert(this.logic.getGameBoard().getTile(3, 0).getFruit() != null);
+    }
+    
+    @Test
+    public void newGameLogicHas6x6Board() {
+        assert(this.logic.getGameBoard().getBoardSize() == 6);
+    }
+    
+    @Test
+    public void mouseCoordinatesAreSetToCorrectTile() {
+        double xCoor = 100;
+        double yCoor = 100;
+        this.logic.mouseClickAtCoordinates(xCoor, yCoor);
+        assert(this.logic.getGameBoard().getTile(1, 1).getFruit() == null);
     }
     
 }

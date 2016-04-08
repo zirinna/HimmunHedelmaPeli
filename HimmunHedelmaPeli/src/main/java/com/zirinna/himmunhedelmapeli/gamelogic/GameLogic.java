@@ -25,8 +25,8 @@ public class GameLogic {
     }
     
     private void populateBoard(int size) {
-        for(int x = 0; x < size; x++) {
-            for(int y = 0; y < size; y++) {
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
                 this.board.getTile(x, y).setFruit(generateRandomFruit());
             }
         }
@@ -38,10 +38,10 @@ public class GameLogic {
      * @return returns the randomly generated fruit
      */
     
-    private Fruit generateRandomFruit() {
+    public Fruit generateRandomFruit() {
         Random rnd = new Random();
         int fruitNumber = rnd.nextInt(3);
-        switch(fruitNumber) {
+        switch (fruitNumber) {
             case 0: return new Fruit(FruitType.APPLE);
             case 1: return new Fruit(FruitType.BANANA);
             case 2: return new Fruit(FruitType.KIWI);
@@ -49,26 +49,14 @@ public class GameLogic {
         }
     }
     
-    /**
-     * printing the gameboard to console
-     */
-    public void printBoard() {
-        for(int i = 0; i < this.board.getBoardSize(); i++) {
-            String rivi = "";
-            for(int j = 0; j < this.board.getBoardSize(); j++) {
-                rivi = rivi+this.board.getTile(i, j).toString()+",";
-            }
-            System.out.println(rivi);
-        }
-        
-    }
+
     /**
      * tells all the tiles on the board to draw themselves on the graphicscontext
      * @param gc graphicscontext to draw the tiles on
      */
     public void drawEverything(GraphicsContext gc) {
-        for(int x = 0; x < this.board.getBoardSize(); x++) {
-            for(int y = 0; y < this.board.getBoardSize(); y++) {
+        for (int x = 0; x < this.board.getBoardSize(); x++) {
+            for (int y = 0; y < this.board.getBoardSize(); y++) {
                 this.board.getTile(x, y).drawTile(gc);
             }
         }
@@ -101,8 +89,8 @@ public class GameLogic {
      */
     public Tile findEmptyTile() {
         for (int x = 0; x < this.board.getBoardSize(); x++) {
-            for (int y = this.board.getBoardSize()-1; y >= 0; y--) {
-                if(this.board.getTile(x, y).getFruit() == null) {
+            for (int y = this.board.getBoardSize() - 1; y >= 0; y--) {
+                if (this.board.getTile(x, y).getFruit() == null) {
                     return this.board.getTile(x, y);
                 }
             }
@@ -116,7 +104,7 @@ public class GameLogic {
      */
     public void updateBoard() {
         while (findEmptyTile() != null) {
-            System.out.println("empty tile found at:"+findEmptyTile().getXcoordinate() + "/"+findEmptyTile().getYcoordinate());
+            System.out.println("empty tile found at:" + findEmptyTile().getXcoordinate() + "/" + findEmptyTile().getYcoordinate());
             dropFruitDown(findEmptyTile().getXcoordinate(), findEmptyTile().getYcoordinate());
         }
         
@@ -131,9 +119,13 @@ public class GameLogic {
      */
     
     public void dropFruitDown(int emptySpotX, int emptySpotY) {
-        for(int y = emptySpotY - 1; y >= 0; y --) {
+        if (emptySpotX < 0 || emptySpotX >=  this.board.getBoardSize() || emptySpotY < 0 || emptySpotY >= this.board.getBoardSize()) {
+            System.out.println("Tried to access a tile out of bounds: " + emptySpotY + "/" + emptySpotY);
+            return;
+        }
+        for (int y = emptySpotY - 1; y >= 0; y--) {
             if (this.board.getTile(emptySpotX, y).getFruit() != null) {
-                System.out.println("Found a fruit to drop down at "+emptySpotX+"/"+y);
+                System.out.println("Found a fruit to drop down at " + emptySpotX + "/" + y);
                 this.board.getTile(emptySpotX, emptySpotY).setFruit(this.board.getTile(emptySpotX, y).getFruit());
                 this.board.getTile(emptySpotX, y).clearTile();
                 break;

@@ -46,8 +46,8 @@ public class Tile {
             return;
         }
         Image image = this.fruit.getFruitImage();
-        gc.drawImage(image, x*image.getWidth(), y*image.getHeight());
-        gc.fillText(this.x+"/"+this.y, x*image.getWidth()+20, y*image.getHeight()+20);
+        gc.drawImage(image, x * image.getWidth(), y * image.getHeight());
+        gc.fillText(this.x + "/" + this.y, x * image.getWidth() + 20, y * image.getHeight() + 20);
     }
     /**
      * clears the tile by setting the fruit to null
