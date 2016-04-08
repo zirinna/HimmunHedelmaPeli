@@ -12,3 +12,4 @@ päivä | tunnit | kuvaus
 01.04.2016 | 3h | testejä, epämääräistä säätöä
 05.04.2016 | 2h | luokkakaavio piirretty uudestaan, koodista siivottu roskia
 08.04.2016 | 2h | pakettirakenteen luominen, testien järjestäminen omiin luokkiinsa ja paketteihinsa
+08.04.2016 | 6h | pelilogiikkaa ja sille testejä, pit- ja checkstyle-raportit
