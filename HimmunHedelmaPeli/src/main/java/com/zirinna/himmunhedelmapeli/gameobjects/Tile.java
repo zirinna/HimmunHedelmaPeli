@@ -22,6 +22,14 @@ public class Tile {
         this.y = y;
     }
     
+    public int getXcoordinate() {
+        return this.x;
+    }
+    
+    public int getYcoordinate() {
+        return this.y;
+    }
+    
     public void setFruit(Fruit fruit) {
         this.fruit = fruit;    
     }
@@ -39,6 +47,7 @@ public class Tile {
         }
         Image image = this.fruit.getFruitImage();
         gc.drawImage(image, x*image.getWidth(), y*image.getHeight());
+        gc.fillText(this.x+"/"+this.y, x*image.getWidth()+20, y*image.getHeight()+20);
     }
     /**
      * clears the tile by setting the fruit to null

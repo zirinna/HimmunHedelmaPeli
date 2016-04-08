@@ -67,7 +67,7 @@ public class MainApp extends Application {
     
     private void doThings(GameLogic game, Stack<MouseEvent> mouseEvents) {
         handleUserInput(game, mouseEvents);
-        //TODO later
+        game.updateBoard();
     }
     
     private void handleUserInput(GameLogic game, Stack<MouseEvent> mouseEvents) {

@@ -8,6 +8,7 @@ package com.zirinna.himmunhedelmapeli.gamelogic;
 import com.zirinna.himmunhedelmapeli.gameobjects.GameBoard;
 import com.zirinna.himmunhedelmapeli.gameobjects.Fruit;
 import com.zirinna.himmunhedelmapeli.gameobjects.FruitType;
+import com.zirinna.himmunhedelmapeli.gameobjects.Tile;
 import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -94,6 +95,38 @@ public class GameLogic {
         return board;
     }
     
+    public Tile findEmptyTile() {
+        for (int x = 0; x < this.board.getBoardSize(); x++) {
+            for (int y = this.board.getBoardSize()-1; y >= 0; y--) {
+                if(this.board.getTile(x, y).getFruit() == null) {
+                    return this.board.getTile(x, y);
+                }
+            }
+        }
+        return null;
+    }
+    
+    public void updateBoard() {
+        while (findEmptyTile() != null) {
+            System.out.println("empty tile found at:"+findEmptyTile().getXcoordinate() + "/"+findEmptyTile().getYcoordinate());
+            dropFruitDown(findEmptyTile().getXcoordinate(), findEmptyTile().getYcoordinate());
+        }
+        
+    }
+    
+    public void dropFruitDown(int emptySpotX, int emptySpotY) {
+        for(int y = emptySpotY - 1; y >= 0; y --) {
+            if (this.board.getTile(emptySpotX, y).getFruit() != null) {
+                System.out.println("Found a fruit to drop down at "+emptySpotX+"/"+y);
+                this.board.getTile(emptySpotX, emptySpotY).setFruit(this.board.getTile(emptySpotX, y).getFruit());
+                this.board.getTile(emptySpotX, y).clearTile();
+                break;
+            }
+        }
+        if (this.board.getTile(emptySpotX, 0).getFruit() == null) {
+            this.board.getTile(emptySpotX, 0).setFruit(generateRandomFruit());
+        }
+    }
     
     
 }
