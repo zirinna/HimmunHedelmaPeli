@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zirinna.himmunhedelmapeli;
+package com.zirinna.himmunhedelmapeli.gamelogic;
 
+import com.zirinna.himmunhedelmapeli.gameobjects.GameBoard;
+import com.zirinna.himmunhedelmapeli.gameobjects.Fruit;
+import com.zirinna.himmunhedelmapeli.gameobjects.FruitType;
 import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 

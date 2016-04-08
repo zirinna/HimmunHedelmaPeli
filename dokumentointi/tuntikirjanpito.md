@@ -10,4 +10,5 @@ päivä | tunnit | kuvaus
 19.03.2016 | 2h | hedelmän poisto laudalta, rakenteen tuskastelua
 01.04.2016 | 2h | muutettu rakennetta niin, että lauta koostuu Tileistä eikä suoraan hedelmistä
 01.04.2016 | 3h | testejä, epämääräistä säätöä
-05.05.2016 | 2h | luokkakaavio piirretty uudestaan, koodista siivottu roskia
+05.04.2016 | 2h | luokkakaavio piirretty uudestaan, koodista siivottu roskia
+08.04.2016 | 2h | pakettirakenteen luominen, testien järjestäminen omiin luokkiinsa ja paketteihinsa
