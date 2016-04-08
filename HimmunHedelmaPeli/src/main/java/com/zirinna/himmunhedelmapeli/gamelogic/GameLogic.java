@@ -82,6 +82,10 @@ public class GameLogic {
         board.getTile(x, y).clearTile();
     }
     
+    public GameBoard getGameBoard() {
+        return board;
+    }
+    
     
     
 }
