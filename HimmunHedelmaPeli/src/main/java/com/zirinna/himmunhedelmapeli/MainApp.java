@@ -72,7 +72,7 @@ public class MainApp extends Application {
     
     private void handleUserInput(GameLogic game, Stack<MouseEvent> mouseEvents) {
         //empty the mouse event stack and handle user clicks on canvas
-        //this while loop goes through the stack in "inverse" order from actual input, but that doesnt matter...
+        //this while loop goes through the stack in "inverse" order from actual input, but that doesnt matter atm...
         while (!mouseEvents.isEmpty()) {
             MouseEvent e = mouseEvents.pop();
             game.mouseClickAtCoordinates(e.getSceneX(), e.getSceneY());

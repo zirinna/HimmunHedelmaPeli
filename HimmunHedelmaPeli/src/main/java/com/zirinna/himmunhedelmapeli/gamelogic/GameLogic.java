@@ -95,6 +95,10 @@ public class GameLogic {
         return board;
     }
     
+    /**
+     * finds the first empty tile starting from lower left corner 
+     * @return empty tile found, null if no empty tile was found
+     */
     public Tile findEmptyTile() {
         for (int x = 0; x < this.board.getBoardSize(); x++) {
             for (int y = this.board.getBoardSize()-1; y >= 0; y--) {
@@ -106,6 +110,10 @@ public class GameLogic {
         return null;
     }
     
+    /**
+     * goes through the gameboard searching for empty tiles and drops the fruits
+     * above the empty tile down
+     */
     public void updateBoard() {
         while (findEmptyTile() != null) {
             System.out.println("empty tile found at:"+findEmptyTile().getXcoordinate() + "/"+findEmptyTile().getYcoordinate());
@@ -113,6 +121,14 @@ public class GameLogic {
         }
         
     }
+    
+    /**
+     * Gets the fruit above the given spot, drops it down one tile and
+     * clears the tile the fruit came from. If there is no empty fruit on the top
+     * row, generates a random fruit.
+     * @param emptySpotX the x-coordinate of the empty tile
+     * @param emptySpotY the y-coordinate of the empty tile
+     */
     
     public void dropFruitDown(int emptySpotX, int emptySpotY) {
         for(int y = emptySpotY - 1; y >= 0; y --) {
