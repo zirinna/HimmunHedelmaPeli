@@ -73,6 +73,14 @@ public class GameLogic {
         }
     }
     
+    public void mouseClickAtCoordinates(double xCoordinate, double yCoordinate) {
+        double fruitWidth = board.getTile(0, 0).getFruit().getFruitImage().getWidth();
+        double fruitHeight = board.getTile(0, 0).getFruit().getFruitImage().getHeight();
+        int xTile = (int) (xCoordinate / fruitWidth);
+        int yTile = (int) (yCoordinate / fruitHeight);
+        removeFruit(xTile, yTile);
+    }
+    
     /**
      * clears the tile
      * @param x Tile's x-coordinate

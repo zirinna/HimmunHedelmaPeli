@@ -1,20 +1,23 @@
 package com.zirinna.himmunhedelmapeli;
 
 import com.zirinna.himmunhedelmapeli.gamelogic.GameLogic;
+import java.util.Stack;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
 public class MainApp extends Application {
-
+    
     @Override
     public void start(Stage stage) throws Exception {
         Group root = new Group();
@@ -28,16 +31,27 @@ public class MainApp extends Application {
         stage.show();
         
         final GameLogic game = new GameLogic();
+        final Stack<MouseEvent> mouseEvents = new Stack<>();
         //game.printBoard();
         
-        //main loop
         
+        //setup listeners
+        scene.setOnMouseClicked(
+        new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                mouseEvents.push(e);
+            }
+        });
+        
+        //main loop
         new AnimationTimer() {
             @Override
             public void handle(long time) {
-                game.removeFruit(3,2);
                 drawThings(gc, game);
-                doThings(game);
+                doThings(game, mouseEvents);
             }
         }.start();
     }
@@ -51,8 +65,18 @@ public class MainApp extends Application {
         game.drawEverything(gc);
     }
     
-    private void doThings(GameLogic game) {
+    private void doThings(GameLogic game, Stack<MouseEvent> mouseEvents) {
+        handleUserInput(game, mouseEvents);
         //TODO later
+    }
+    
+    private void handleUserInput(GameLogic game, Stack<MouseEvent> mouseEvents) {
+        //empty the mouse event stack and handle user clicks on canvas
+        //this while loop goes through the stack in "inverse" order from actual input, but that doesnt matter...
+        while (!mouseEvents.isEmpty()) {
+            MouseEvent e = mouseEvents.pop();
+            game.mouseClickAtCoordinates(e.getSceneX(), e.getSceneY());
+        }
     }
 
     /**
