@@ -14,3 +14,4 @@ päivä | tunnit | kuvaus
 08.04.2016 | 2h | pakettirakenteen luominen, testien järjestäminen omiin luokkiinsa ja paketteihinsa
 08.04.2016 | 6h | pelilogiikkaa ja sille testejä, pit- ja checkstyle-raportit
 15.04.2016 | 3h | toteutettu kolmen samanlaisen hedelmän matchi laudalla
+15.04.2016 | 3h | testejä, pitin kanssa tappelua
