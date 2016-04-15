@@ -6,7 +6,7 @@
 package com.zirinna.himmunhedelmapeli.gameobjects;
 
 /**
- *
+ * This class is used to represent the gameboard, which holds the tiles.
  * @author zirinna
  */
 public class GameBoard {

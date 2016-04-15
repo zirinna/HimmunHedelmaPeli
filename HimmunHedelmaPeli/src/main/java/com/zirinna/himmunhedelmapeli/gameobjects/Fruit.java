@@ -8,7 +8,8 @@ package com.zirinna.himmunhedelmapeli.gameobjects;
 import javafx.scene.image.Image;
 
 /**
- *
+ * Represents a fruit on the gameboard. A fruit has a type and can be removed from the 
+ * board by clicking it or by matching it with similar fruits.
  * @author zirinna
  */
 public class Fruit {
@@ -27,6 +28,10 @@ public class Fruit {
             case APPLE: this.image = new Image("/images/apple.png");
                 break;
             case KIWI: this.image = new Image("/images/kiwi.png");
+                break;
+            case ORANGE: this.image = new Image("/images/orange.png");
+                break;
+            case PANDARIN: this.image = new Image("/images/pandarin.png");
                 break;
             default: break;
         }

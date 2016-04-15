@@ -13,7 +13,7 @@ import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- *
+ * This class contains several methods related to the actual logic of the game
  * @author zirinna
  */
 public class GameLogic {
@@ -34,17 +34,19 @@ public class GameLogic {
     }
     
     /**
-     * generates a random fruit. Each fruit has the same chance of being generated
+     * generates a random fruit. Each fruit has roughly the same chance of being generated
      * @return returns the randomly generated fruit
      */
     
     public Fruit generateRandomFruit() {
         Random rnd = new Random();
-        int fruitNumber = rnd.nextInt(3);
+        int fruitNumber = rnd.nextInt(5);
         switch (fruitNumber) {
             case 0: return new Fruit(FruitType.APPLE);
             case 1: return new Fruit(FruitType.BANANA);
             case 2: return new Fruit(FruitType.KIWI);
+            case 3: return new Fruit(FruitType.ORANGE);
+            case 4: return new Fruit(FruitType.PANDARIN);
             default: return new Fruit(FruitType.APPLE);
         }
     }
@@ -99,10 +101,11 @@ public class GameLogic {
     }
     
     /**
-     * goes through the gameboard searching for empty tiles and drops the fruits
-     * above the empty tile down
+     * goes through the gameboard, searches for matching fruits, removes them and
+     * populates the empty tiles
      */
     public void updateBoard() {
+        this.removeMatchingFruits();
         while (findEmptyTile() != null) {
             System.out.println("empty tile found at:" + findEmptyTile().getXcoordinate() + "/" + findEmptyTile().getYcoordinate());
             dropFruitDown(findEmptyTile().getXcoordinate(), findEmptyTile().getYcoordinate());
@@ -134,6 +137,73 @@ public class GameLogic {
         if (this.board.getTile(emptySpotX, 0).getFruit() == null) {
             this.board.getTile(emptySpotX, 0).setFruit(generateRandomFruit());
         }
+    }
+    
+    /**
+     * goes through the gameboard and searches for matching fruits, removes the matching
+     * fruits
+     */
+    public void removeMatchingFruits() {
+        for (int x = 0; x < this.board.getBoardSize(); x++) {
+            for (int y = 0; y < this.board.getBoardSize(); y++) {
+                boolean horiMatch = checkForHorizontalMatch(x, y);
+                boolean vertiMatch = checkForVerticalMatch(x, y);
+                if (horiMatch) {
+                    this.removeFruit(x - 1, y);
+                    this.removeFruit(x, y);
+                    this.removeFruit(x + 1, y);
+                }
+                if (vertiMatch) {
+                    this.removeFruit(x, y - 1);
+                    this.removeFruit(x, y);
+                    this.removeFruit(x, y + 1);
+                    
+                }
+            }
+        }       
+    }
+    
+    /**
+     * checks if the fruit on a tile on given coordinates x,y has a fruit of the same type
+     * on it's right and left side
+     * @param x x-coordinate
+     * @param y y-coordinate
+     * @return true if a match was found, false otherwise
+     */
+    public boolean checkForHorizontalMatch(int x, int y) {
+        if (x <= 0 || x >= this.board.getBoardSize() - 1) {
+            return false;
+        }
+        if (this.board.getTile(x, y).getFruit() == null || this.board.getTile(x - 1, y).getFruit() == null || this.board.getTile(x + 1, y).getFruit() == null) {
+            return false;
+        }
+        FruitType fruit = this.board.getTile(x, y).getFruit().getFruitType();
+        
+        if (this.board.getTile(x - 1, y).getFruit().getFruitType().equals(fruit) && this.board.getTile(x + 1, y).getFruit().getFruitType().equals(fruit)) {
+            return true;
+        }
+        return false;   
+    }
+    
+    /**
+     * checks if the fruit on a tile on given coordinates x,y has a fruit of the same type
+     * on top of it and under it
+     * @param x x-coordinate
+     * @param y y-coordinate
+     * @return true if a match was found, false otherwise
+     */
+    public boolean checkForVerticalMatch(int x, int y) {
+        if (y <= 0 || y >= this.board.getBoardSize() - 1) {
+            return false;
+        }
+        if (this.board.getTile(x, y).getFruit() == null || this.board.getTile(x, y - 1).getFruit() == null || this.board.getTile(x, y + 1).getFruit() == null) {
+            return false;
+        }
+        FruitType fruit = this.board.getTile(x, y).getFruit().getFruitType();
+        if (this.board.getTile(x, y - 1).getFruit().getFruitType().equals(fruit) && this.board.getTile(x, y + 1).getFruit().getFruitType().equals(fruit)) {
+            return true;
+        }
+        return false;
     }
     
     

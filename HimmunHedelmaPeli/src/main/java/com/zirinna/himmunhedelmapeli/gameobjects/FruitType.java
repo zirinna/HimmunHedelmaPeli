@@ -6,13 +6,15 @@
 package com.zirinna.himmunhedelmapeli.gameobjects;
 
 /**
- *
+ * 
  * @author zirinna
  */
 public enum FruitType {
     
     BANANA,
     APPLE,
-    KIWI;
+    KIWI,
+    ORANGE,
+    PANDARIN;
     
 }

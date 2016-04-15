@@ -9,7 +9,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
- *
+ * This class represents a single tile on the board, which can be empty or
+ * holding a fruit.
  * @author zirinna
  */
 public class Tile {
