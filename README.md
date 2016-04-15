@@ -12,4 +12,4 @@ Himmun Hedelmäpeli on pieni kliksuttelupeli, jossa pelaaja yrittää saada kolm
 
 [checkstyle-raportti](https://htmlpreview.github.io/?https://github.com/zirinna/HimmunHedelmaPeli/blob/master/dokumentointi/site/checkstyle.html)
 
-[pit-raportti](https://htmlpreview.github.io/?https://github.com/zirinna/HimmunHedelmaPeli/blob/master/dokumentointi/pit/201604082053/index.html)
+[pit-raportti](https://htmlpreview.github.io/?https://github.com/zirinna/HimmunHedelmaPeli/blob/master/dokumentointi/pit/201604152304/index.html)
