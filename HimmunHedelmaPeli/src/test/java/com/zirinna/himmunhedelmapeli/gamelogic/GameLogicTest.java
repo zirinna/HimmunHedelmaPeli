@@ -106,4 +106,25 @@ public class GameLogicTest {
         assert(this.logic.getGameBoard().getTile(1, 1).getFruit() == null);
     }
     
+    @Test
+    public void threeSameFruitsOnTopOfEachOtherAreRemoved() {
+        Fruit fruit = new Fruit(FruitType.PANDARIN);
+        this.logic.getGameBoard().getTile(2, 0).setFruit(fruit);
+        this.logic.getGameBoard().getTile(2, 1).setFruit(fruit);
+        this.logic.getGameBoard().getTile(2, 2).setFruit(fruit);
+        this.logic.removeMatchingFruits();
+        assert(this.logic.getGameBoard().getTile(2, 0).getFruit() == null && this.logic.getGameBoard().getTile(2, 1).getFruit() == null && this.logic.getGameBoard().getTile(2, 2).getFruit() == null);
+    }
+    
+    @Test
+    public void threeSameFruitsInARowAreRemoved() {
+        Fruit fruit = new Fruit(FruitType.PANDARIN);
+        this.logic.getGameBoard().getTile(0, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(1, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(2, 3).setFruit(fruit);
+        this.logic.removeMatchingFruits();
+        assert(this.logic.getGameBoard().getTile(0, 3).getFruit() == null && this.logic.getGameBoard().getTile(1, 3).getFruit() == null && this.logic.getGameBoard().getTile(2, 3).getFruit() == null);
+    }
+    
+    
 }

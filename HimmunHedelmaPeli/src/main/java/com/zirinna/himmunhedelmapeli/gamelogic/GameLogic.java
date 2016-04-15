@@ -30,14 +30,12 @@ public class GameLogic {
                 this.board.getTile(x, y).setFruit(generateRandomFruit());
             }
         }
-    
     }
     
     /**
      * generates a random fruit. Each fruit has roughly the same chance of being generated
      * @return returns the randomly generated fruit
      */
-    
     public Fruit generateRandomFruit() {
         Random rnd = new Random();
         int fruitNumber = rnd.nextInt(5);
@@ -51,7 +49,6 @@ public class GameLogic {
         }
     }
     
-
     /**
      * tells all the tiles on the board to draw themselves on the graphicscontext
      * @param gc graphicscontext to draw the tiles on
@@ -110,7 +107,6 @@ public class GameLogic {
             System.out.println("empty tile found at:" + findEmptyTile().getXcoordinate() + "/" + findEmptyTile().getYcoordinate());
             dropFruitDown(findEmptyTile().getXcoordinate(), findEmptyTile().getYcoordinate());
         }
-        
     }
     
     /**
@@ -120,7 +116,6 @@ public class GameLogic {
      * @param emptySpotX the x-coordinate of the empty tile
      * @param emptySpotY the y-coordinate of the empty tile
      */
-    
     public void dropFruitDown(int emptySpotX, int emptySpotY) {
         if (emptySpotX < 0 || emptySpotX >=  this.board.getBoardSize() || emptySpotY < 0 || emptySpotY >= this.board.getBoardSize()) {
             System.out.println("Tried to access a tile out of bounds: " + emptySpotY + "/" + emptySpotY);
@@ -138,7 +133,6 @@ public class GameLogic {
             this.board.getTile(emptySpotX, 0).setFruit(generateRandomFruit());
         }
     }
-    
     /**
      * goes through the gameboard and searches for matching fruits, removes the matching
      * fruits
@@ -162,7 +156,6 @@ public class GameLogic {
             }
         }       
     }
-    
     /**
      * checks if the fruit on a tile on given coordinates x,y has a fruit of the same type
      * on it's right and left side
@@ -184,7 +177,6 @@ public class GameLogic {
         }
         return false;   
     }
-    
     /**
      * checks if the fruit on a tile on given coordinates x,y has a fruit of the same type
      * on top of it and under it
@@ -205,6 +197,4 @@ public class GameLogic {
         }
         return false;
     }
-    
-    
 }

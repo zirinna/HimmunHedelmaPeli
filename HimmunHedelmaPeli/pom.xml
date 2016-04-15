@@ -52,6 +52,8 @@
                     <excludedClasses>
                         <param>com.zirinna.himmunhedelmapeli.MainApp.java</param>
                     </excludedClasses>
+                    <excludedMethods>
+                    </excludedMethods>
                     <targetTests>
                         <param>com.zirinna.himmunhedelmapeli.*</param>
                         <param>com.zirinna.himmunhedelmapeli.*</param>
