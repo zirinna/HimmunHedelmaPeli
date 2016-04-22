@@ -45,7 +45,32 @@ public class GameRulesTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void cantCheckForHorizontalMatchOutsideGameBoard() {
+        boolean shouldBeFalse = GameRules.checkForHorizontalMatch(4658, 999, logic.getGameBoard());
+        assertFalse(shouldBeFalse);
+    }
+    
+    @Test
+    public void cantCheckForVerticalMatchOutsideGameBoard() {
+        boolean shouldBeFalse = GameRules.checkForHorizontalMatch(15, 347, logic.getGameBoard());
+        assertFalse(shouldBeFalse);
+    }
 
+    @Test
+    public void cantCheckForHorizontalMatchInNegativeCoordinates() {
+        boolean shouldBeFalse = GameRules.checkForHorizontalMatch(-1, -17, logic.getGameBoard());
+        assertFalse(shouldBeFalse);
+    }
+    
+
+    @Test
+    public void cantCheckForVerticalMatchInNegativeCoordinates() {
+        boolean shouldBeFalse = GameRules.checkForHorizontalMatch(-31, -12, logic.getGameBoard());
+        assertFalse(shouldBeFalse);
+    }
+    
     @Test
     public void horizontalMatchRemovesMatchingTiles() {
         Fruit fruit = new Fruit(FruitType.ORANGE);

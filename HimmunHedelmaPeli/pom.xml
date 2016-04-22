@@ -54,6 +54,8 @@
                         <param>com.zirinna.himmunhedelmapeli.UserInterface.java</param>
                     </excludedClasses>
                     <excludedMethods>
+                        <param>drawEverything</param>
+                        <param>drawTiles</param>
                     </excludedMethods>
                     <targetTests>
                         <param>com.zirinna.himmunhedelmapeli.*</param>

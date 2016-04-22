@@ -141,7 +141,7 @@ public class GameLogicTest {
     @Test
     public void mouseClickAtFruitRemovesOneMove() {
         Fruit fruit = new Fruit(FruitType.PANDARIN);
-        
+        int oldMoves = this.logic.moves;
         double fruitWidth = this.logic.getGameBoard().getTile(0, 0).getFruit().getFruitImage().getWidth();
         double fruitHeight = this.logic.getGameBoard().getTile(0, 0).getFruit().getFruitImage().getHeight();
         int xTile = (int) (300 / fruitWidth);
@@ -149,10 +149,31 @@ public class GameLogicTest {
         this.logic.mouseClickAtCoordinates(300, 300);
         
         this.logic.getGameBoard().getTile(xTile, yTile).setFruit(fruit);
-        
-        assert(this.logic.moves == this.logic.moves--);
+        assert(this.logic.moves != oldMoves);
     }
-   
+    
+    @Test
+    public void mouseClickRemovesCorrectTileFruit() {
+        double fruitWidth = logic.getGameBoard().getTile(0, 0).getFruit().getFruitImage().getWidth();
+        double fruitHeight = logic.getGameBoard().getTile(0, 0).getFruit().getFruitImage().getHeight();
+        double xCoordinate = 200;
+        double yCoordinate = 200;
+        int xTile = (int) (xCoordinate / fruitWidth);
+        int yTile = (int) (yCoordinate / fruitHeight);
+        assert(logic.getGameBoard().getTile(xTile, yTile).getFruit() != null);
+        this.logic.mouseClickAtCoordinates(xCoordinate, yCoordinate);
+        assert(logic.getGameBoard().getTile(xTile, yTile).getFruit() == null);
+    }
+    
+    @Test
+    public void mouseClickingOutsideGameBoardDoesntReduceMoves() {
+        double xCoordinate = 56200;
+        double yCoordinate = 2300;
+        int oldMoves = logic.moves;
+        
+        this.logic.mouseClickAtCoordinates(xCoordinate, yCoordinate);
+        assert(logic.moves == oldMoves);
+    }
     
     
 }
