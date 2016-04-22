@@ -13,6 +13,10 @@ public class GameBoard {
     
     private Tile[][] gameboard;
     
+    /**
+     * Constructor.
+     * @param boardSize n in n x n sized board
+     */
     public GameBoard(int boardSize) {
         this.gameboard = new Tile[boardSize][boardSize];
         generateBoard();
@@ -25,11 +29,22 @@ public class GameBoard {
             }
         }
     }
-    
+    /**
+     * When given coordinates that are on the gameboard, returns the tile on those coordinates.
+     * @param x x-coordinate
+     * @param y y-coordinate
+     * @return Returns the tile on the board on given coordinates.
+     */
     public Tile getTile(int x, int y) {
         return gameboard[x][y];
     }
     
+    /**
+     * Sets the tile on given coordinates to given tile.
+     * @param x x-coordinate
+     * @param y y-coordinate
+     * @param tile Tile
+     */
     public void setTile(int x, int y, Tile tile) {
         this.gameboard[x][y] = tile;
     }

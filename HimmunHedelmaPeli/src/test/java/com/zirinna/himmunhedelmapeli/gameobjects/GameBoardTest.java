@@ -18,6 +18,10 @@ import org.junit.Test;
  * @author zirinna
  */
 public class GameBoardTest {
+    
+    private GameBoard gb;
+    private int n;
+    
     @Rule 
     public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
     
@@ -31,6 +35,8 @@ public class GameBoardTest {
     
     @Before
     public void setUp() {
+        int n = 6;
+        gb = new GameBoard(n);
     }
     
     @After
@@ -39,9 +45,14 @@ public class GameBoardTest {
     
     @Test
     public void gameboardSizeMatchesInitialGenerationParameters() {
-            int n = 6;
-            GameBoard gb = new GameBoard(n);
-            assert(gb.getBoardSize() == n);
+        assert(this.gb.getBoardSize() == 6);
     }
+    
+    @Test
+    public void gameboardSizeIsBiggerThanZero() {
+        assert(gb.getBoardSize() > 0);
+    }
+    
+   
     
 }

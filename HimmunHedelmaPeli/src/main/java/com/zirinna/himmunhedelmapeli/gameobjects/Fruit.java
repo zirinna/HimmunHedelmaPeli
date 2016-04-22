@@ -16,6 +16,10 @@ public class Fruit {
     private FruitType type;
     private Image image;
     
+    /**
+     * Constructor.
+     * @param type Fruittype.
+     */
     public Fruit(FruitType type) {
         this.type = type;
         setImageByType();
@@ -41,10 +45,18 @@ public class Fruit {
         return this.type;
     }
     
+    /**
+     * Getter for getting the image of the fruit defined by fruit type.
+     * @return the image of the fruit
+     */
     public Image getFruitImage() {
         return this.image;
     }
     
+/**
+ * String representation of the fruit.
+ * @return returns the string
+ */
     public String toString() {
         return this.type.toString();
     }

@@ -39,7 +39,7 @@ public class GameRules {
     }
     /**
      * Checks if the fruit on a tile on given coordinates x,y has a fruit of the same type.
-     * on top of it and under it
+     * on top of it and under it.
      * @param x x-coordinate
      * @param y y-coordinate
      * @param board gameboard to check for matches on

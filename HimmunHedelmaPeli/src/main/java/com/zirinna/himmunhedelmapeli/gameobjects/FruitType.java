@@ -6,7 +6,7 @@
 package com.zirinna.himmunhedelmapeli.gameobjects;
 
 /**
- * 
+ * The possible fruit types.
  * @author zirinna
  */
 public enum FruitType {

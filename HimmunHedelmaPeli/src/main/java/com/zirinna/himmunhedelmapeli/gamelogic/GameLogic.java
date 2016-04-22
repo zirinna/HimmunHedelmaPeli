@@ -91,9 +91,6 @@ public class GameLogic {
         if (xTile >= 0 && xTile < board.getBoardSize() && yTile >= 0 && yTile < board.getBoardSize()) {
             removeFruit(xTile, yTile);
             moves--;
-            if (moves == 0) {
-                
-            }
         }
     }
     
@@ -128,6 +125,7 @@ public class GameLogic {
     /**
      * Goes through the gameboard, searches for matching fruits, removes them and
      * populates the empty tiles.
+     * @param time timer
      */
     public void updateBoard(long time) {
         this.removeMatchingFruits();
@@ -163,8 +161,8 @@ public class GameLogic {
         }
     }
     /**
-     * goes through the gameboard and searches for matching fruits, removes the matching
-     * fruits
+     * Goes through the gameboard and searches for matching fruits, removes the matching
+     * fruits.
      */
     public void removeMatchingFruits() {
         for (int x = 0; x < this.board.getBoardSize(); x++) {

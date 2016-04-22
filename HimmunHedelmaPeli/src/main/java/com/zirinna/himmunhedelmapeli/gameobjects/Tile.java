@@ -19,6 +19,12 @@ public class Tile {
     private int y;
     private double highlighttime;
     
+    /**
+     * Constructor.
+     * @param x x-coordinate
+     * @param y y-coordinate
+     */
+    
     public Tile(int x, int y) {
         this.x = x;
         this.y = y;
@@ -40,7 +46,7 @@ public class Tile {
         return this.fruit;
     }
     /**
-     * draws the tile and the fruit on the tile, if the tile has a fruit
+     * Draws the tile and the fruit on the tile, if the tile has a fruit.
      * @param gc the graphicscontext to draw the tile on
      */
     public void drawTile(GraphicsContext gc) {
@@ -53,16 +59,18 @@ public class Tile {
     }
     
     /**
-     * clears the tile by setting the fruit to null
+     * Clears the tile by setting the fruit to null.
      */
     public void clearTile() {
         this.fruit = null;
     }
     
+    /**
+     * Highlights the tile.
+     */
+    /*
     public void highlightTile() {
         this.highlighttime = 1.5;
     }
-    
-
-
+    */
 }
