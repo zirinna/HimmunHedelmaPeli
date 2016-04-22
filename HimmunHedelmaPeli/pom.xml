@@ -51,6 +51,7 @@
                     </targetClasses>
                     <excludedClasses>
                         <param>com.zirinna.himmunhedelmapeli.MainApp.java</param>
+                        <param>com.zirinna.himmunhedelmapeli.UserInterface.java</param>
                     </excludedClasses>
                     <excludedMethods>
                     </excludedMethods>

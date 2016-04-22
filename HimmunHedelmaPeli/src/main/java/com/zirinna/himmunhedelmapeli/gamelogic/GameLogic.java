@@ -14,7 +14,7 @@ import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * This class contains several methods related to the actual logic of the game
+ * This class contains several methods related to the actual logic of the game.
  * @author zirinna
  */
 public class GameLogic {
@@ -23,6 +23,9 @@ public class GameLogic {
     public int moves = 20;
     public int score = 0;
     
+    /**
+     * Constructor for GameLogic.
+     */
     public GameLogic() {
         this.board = new GameBoard(6);
         this.ui = new UserInterface();
@@ -38,7 +41,7 @@ public class GameLogic {
     }
     
     /**
-     * generates a random fruit. Each fruit has roughly the same chance of being generated
+     * Generates a random fruit. Each fruit has roughly the same chance of being generated.
      * @return returns the randomly generated fruit
      */
     public Fruit generateRandomFruit() {
@@ -54,14 +57,17 @@ public class GameLogic {
         }
     }
     
-    
+    /**
+     * Draws the tiles and ui.
+     * @param gc graphicscontext to draw on
+     */
     public void drawEverything(GraphicsContext gc) {
         this.drawTiles(gc);
         this.ui.drawUI(gc, this);
     }
     
     /**
-     * tells all the tiles on the board to draw themselves on the graphicscontext
+     * Tells all the tiles on the board to draw themselves on the graphicscontext
      * @param gc graphicscontext to draw the tiles on
      */
     private void drawTiles(GraphicsContext gc) {
@@ -71,6 +77,11 @@ public class GameLogic {
             }
         }
     }
+    /**
+     * Handles the mouse click on given coordinates.
+     * @param xCoordinate x-coordinate of the mouse click.
+     * @param yCoordinate y-coordinate of the mouse click.
+     */
     
     public void mouseClickAtCoordinates(double xCoordinate, double yCoordinate) {
         double fruitWidth = board.getTile(0, 0).getFruit().getFruitImage().getWidth();
@@ -87,7 +98,7 @@ public class GameLogic {
     }
     
     /**
-     * clears the tile
+     * Clears the tile.
      * @param x Tile's x-coordinate
      * @param y Tile's y-coordinate
      */
@@ -100,8 +111,8 @@ public class GameLogic {
     }
     
     /**
-     * finds the first empty tile starting from lower left corner 
-     * @return empty tile found, null if no empty tile was found
+     * Finds the first empty tile starting from lower left corner.
+     * @return empty tile found, null if no empty tile was found.
      */
     public Tile findEmptyTile() {
         for (int x = 0; x < this.board.getBoardSize(); x++) {
@@ -115,8 +126,8 @@ public class GameLogic {
     }
     
     /**
-     * goes through the gameboard, searches for matching fruits, removes them and
-     * populates the empty tiles
+     * Goes through the gameboard, searches for matching fruits, removes them and
+     * populates the empty tiles.
      */
     public void updateBoard(long time) {
         this.removeMatchingFruits();
@@ -176,8 +187,11 @@ public class GameLogic {
             }
         }       
     }
-    
+    /**
+     * Ticks down the timer for highlighting a tile.
+     * @param time 
+     */
     public void tickDownHighlighttimer(long time) {
-            
+       //TODO     
     }
 }

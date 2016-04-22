@@ -9,18 +9,18 @@ import com.zirinna.himmunhedelmapeli.gameobjects.FruitType;
 import com.zirinna.himmunhedelmapeli.gameobjects.GameBoard;
 
 /**
- *
+ * Contains the methods for checking matches of fruits.
  * @author zirinna
  */
 public class GameRules {
     
     /**
-     * checks if the fruit on a tile on given coordinates x,y has a fruit of the same type
-     * on it's right and left side
+     * Checks if the fruit on a tile on given coordinates x,y has a fruit of the same type
+     * on it's right and left side.
      * @param x x-coordinate
      * @param y y-coordinate
      * @param board gameboard to check for matches on
-     * @return true if a match was found, false otherwise
+     * @return True if a match was found, false otherwise.
      */
     
     public static boolean checkForHorizontalMatch(int x, int y, GameBoard board) {
@@ -38,7 +38,7 @@ public class GameRules {
         return false;   
     }
     /**
-     * checks if the fruit on a tile on given coordinates x,y has a fruit of the same type
+     * Checks if the fruit on a tile on given coordinates x,y has a fruit of the same type.
      * on top of it and under it
      * @param x x-coordinate
      * @param y y-coordinate
