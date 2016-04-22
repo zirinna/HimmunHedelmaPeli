@@ -50,7 +50,7 @@ public class MainApp extends Application {
             @Override
             public void handle(long time) {
                 drawThings(gc, game);
-                doThings(game, mouseEvents);
+                doThings(game, mouseEvents, time);
             }
         }.start();
     }
@@ -64,9 +64,11 @@ public class MainApp extends Application {
         game.drawEverything(gc);
     }
     
-    private void doThings(GameLogic game, Stack<MouseEvent> mouseEvents) {
-        handleUserInput(game, mouseEvents);
-        game.updateBoard();
+    private void doThings(GameLogic game, Stack<MouseEvent> mouseEvents, long time) {
+        if (game.moves > 0) {
+            handleUserInput(game, mouseEvents);
+        }
+        game.updateBoard(time);
     }
     
     private void handleUserInput(GameLogic game, Stack<MouseEvent> mouseEvents) {

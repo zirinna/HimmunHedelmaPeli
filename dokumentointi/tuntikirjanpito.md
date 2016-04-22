@@ -15,3 +15,4 @@ päivä | tunnit | kuvaus
 08.04.2016 | 6h | pelilogiikkaa ja sille testejä, pit- ja checkstyle-raportit
 15.04.2016 | 3h | toteutettu kolmen samanlaisen hedelmän matchi laudalla
 15.04.2016 | 3h | testejä, pitin kanssa tappelua
+22.04.2016 | 6h | javafx-tappelua, siirto- ja pistelaskurit ja game over -ruutu

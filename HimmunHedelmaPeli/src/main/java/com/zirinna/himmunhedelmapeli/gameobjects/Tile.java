@@ -17,6 +17,7 @@ public class Tile {
     private Fruit fruit;
     private int x;
     private int y;
+    private double highlighttime;
     
     public Tile(int x, int y) {
         this.x = x;
@@ -57,6 +58,11 @@ public class Tile {
     public void clearTile() {
         this.fruit = null;
     }
+    
+    public void highlightTile() {
+        this.highlighttime = 1.5;
+    }
+    
 
 
 }
