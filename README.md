@@ -13,4 +13,4 @@ Huom! Vaatii Java8:n (JavaFX:n takia).
 
 [checkstyle-raportti](https://htmlpreview.github.io/?https://github.com/zirinna/HimmunHedelmaPeli/blob/master/dokumentointi/site/checkstyle.html)
 
-[pit-raportti](https://htmlpreview.github.io/?https://github.com/zirinna/HimmunHedelmaPeli/blob/master/dokumentointi/pit/201604152304/index.html)
+[pit-raportti](https://htmlpreview.github.io/?https://github.com/zirinna/HimmunHedelmaPeli/blob/master/dokumentointi/pit/index.html)
