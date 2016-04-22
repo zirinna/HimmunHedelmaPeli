@@ -16,3 +16,5 @@ päivä | tunnit | kuvaus
 15.04.2016 | 3h | toteutettu kolmen samanlaisen hedelmän matchi laudalla
 15.04.2016 | 3h | testejä, pitin kanssa tappelua
 22.04.2016 | 6h | javafx-tappelua, siirto- ja pistelaskurit ja game over -ruutu
+22.04.2016 | 4h | testejä, tappelua pitin ja checkstylen kanssa
+23.04.2016 | 2h | sekvenssikaavioita, epätoivoisia ja epäonnistuneita yrityksiä tappaa mutantteja
