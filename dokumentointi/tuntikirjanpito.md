@@ -18,3 +18,5 @@ päivä | tunnit | kuvaus
 22.04.2016 | 6h | javafx-tappelua, siirto- ja pistelaskurit ja game over -ruutu
 22.04.2016 | 4h | testejä, tappelua pitin ja checkstylen kanssa
 23.04.2016 | 2h | sekvenssikaavioita, epätoivoisia ja epäonnistuneita yrityksiä tappaa mutantteja
+26.04.2016 | 3h | yritystä hidastaa putoavia/poistettavia hedelmiä, vaatii lisää työtä
+27.04.2016 | 2h | koodin uudelleenjärjestelyä, pakattu jar huomista esittelyä varten
