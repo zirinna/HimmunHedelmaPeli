@@ -50,12 +50,10 @@ public class Tile {
      * @param gc the graphicscontext to draw the tile on
      */
     public void drawTile(GraphicsContext gc) {
-        if (this.fruit == null) {
-            return;
-        }
-        Image image = this.fruit.getFruitImage();
-        gc.drawImage(image, x * image.getWidth(), y * image.getHeight());
-        gc.fillText(this.x + "/" + this.y, x * image.getWidth() + 20, y * image.getHeight() + 20);
+        if (this.fruit == null) return;
+        if (this.highlighttime > 0) return;
+        gc.drawImage(this.fruit.getFruitImage(), x * this.fruit.getFruitImage().getWidth(), y * this.fruit.getFruitImage().getHeight());
+        //gc.fillText(this.x + "/" + this.y, x * image.getWidth() + 20, y * image.getHeight() + 20);
     }
     
     /**
@@ -68,9 +66,26 @@ public class Tile {
     /**
      * Highlights the tile.
      */
-    /*
+    
     public void highlightTile() {
-        this.highlighttime = 1.5;
+        this.highlighttime = 0.4;
     }
-    */
+    
+    private void highlightClear() {
+        this.fruit = null;
+    }
+    
+    public void tickDownHighlighttimer(double time) {
+        if (this.highlighttime <= 0) return;
+        this.highlighttime = highlighttime - time;
+        if (highlighttime < 0)  {
+            highlighttime = 0;
+            this.highlightClear();
+        }
+    }
+    
+    public boolean isHighlight() {
+        return (this.highlighttime > 0);
+    }
+    
 }

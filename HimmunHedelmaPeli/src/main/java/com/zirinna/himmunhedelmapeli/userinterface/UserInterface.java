@@ -14,15 +14,14 @@ import javafx.scene.text.Font;
  * Handles UI stuff.
  * @author zirinna
  */
-public class UserInterface {
+public abstract class UserInterface {
  
     /**
      * Draws the UI.
      * @param gc graphicscontext to draw the UI to.
      * @param gl gamelogic
      */
-    
-    public void drawUI(GraphicsContext gc, GameLogic gl) {
+    public static void drawUI(GraphicsContext gc, GameLogic gl) {
         gc.save();
         double screenWidth = gc.getCanvas().getWidth();
         double screenHeight = gc.getCanvas().getHeight();
@@ -40,12 +39,24 @@ public class UserInterface {
         
     }
     
+        /**
+     * Tells all the tiles on the board to draw themselves on the graphicscontext
+     * @param gc graphicscontext to draw the tiles on
+     */
+    public static void drawTiles(GraphicsContext gc, GameLogic gamelogic) {
+        for (int x = 0; x < gamelogic.getGameBoard().getBoardSize(); x++) {
+            for (int y = 0; y < gamelogic.getGameBoard().getBoardSize(); y++) {
+                gamelogic.getGameBoard().getTile(x, y).drawTile(gc);
+            }
+        }
+    }
+    
     /**
      * Draws the game over -pop up.
      * @param gc graphicscontext to draw on
      * @param gl gamelogic
      */
-    public void drawGameOver(GraphicsContext gc, GameLogic gl) {
+    public static void drawGameOver(GraphicsContext gc, GameLogic gl) {
         gc.setFill(Color.DARKCYAN);
         gc.fillRect(50, 50, 200, 125);
         gc.setFill(Color.WHITE);
@@ -53,6 +64,5 @@ public class UserInterface {
         gc.fillText("Peli loppui, sait ", 75, 85);
         gc.fillText("" + gl.score, 115, 110);
         gc.fillText("pistettä.", 90, 135);
-        gc.fillText("You died.", 80, 160);
     }
 }

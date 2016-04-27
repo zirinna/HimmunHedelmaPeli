@@ -44,6 +44,7 @@ public class TileTest {
             assert(tile.getFruit() != null);
     }
     
+    
     @Test
     public void clearingTileRemovesTheFruitInIt() {
             Tile tile = new Tile(0,0);
@@ -52,6 +53,5 @@ public class TileTest {
             assert(tile.getFruit() == null);
     }
     
-
     
 }

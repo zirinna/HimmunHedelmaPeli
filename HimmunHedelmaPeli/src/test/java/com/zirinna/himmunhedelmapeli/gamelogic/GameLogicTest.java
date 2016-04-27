@@ -11,6 +11,7 @@ import com.zirinna.himmunhedelmapeli.gameobjects.FruitType;
 import com.zirinna.himmunhedelmapeli.gameobjects.GameBoard;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertFalse;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -103,7 +104,7 @@ public class GameLogicTest {
         double xCoor = 100;
         double yCoor = 100;
         this.logic.mouseClickAtCoordinates(xCoor, yCoor);
-        assert(this.logic.getGameBoard().getTile(1, 1).getFruit() == null);
+        assert(this.logic.getGameBoard().getTile(1, 1).isHighlight() || this.logic.getGameBoard().getTile(1, 1).getFruit() == null);
     }
     
     
@@ -126,6 +127,52 @@ public class GameLogicTest {
         this.logic.getGameBoard().getTile(2, 3).setFruit(fruit);
         this.logic.removeMatchingFruits();
         assert(this.logic.getGameBoard().getTile(0, 3).getFruit() == null);
+    }
+    
+    @Test
+    public void removingMatchingFruitsReducesTheAmountOfThoseFruitsOnTheBoard() {
+        this.logic.removeMatchingFruits();
+        Fruit fruit = new Fruit(FruitType.APPLE);
+        this.logic.getGameBoard().getTile(0, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(1, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(2, 3).setFruit(fruit);
+        
+        int apples = 0;
+        int oranges = 0;
+        int kiwis = 0;
+        int pandarins = 0;
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 6; y++) {
+                if (this.logic.getGameBoard().getTile(x, y).getFruit() != null) {
+                    if (this.logic.getGameBoard().getTile(x, y).getFruit().getFruitType().equals(FruitType.APPLE)) apples++;
+                    if (this.logic.getGameBoard().getTile(x, y).getFruit().getFruitType().equals(FruitType.KIWI)) kiwis++;
+                    if (this.logic.getGameBoard().getTile(x, y).getFruit().getFruitType().equals(FruitType.ORANGE)) oranges++;
+                    if (this.logic.getGameBoard().getTile(x, y).getFruit().getFruitType().equals(FruitType.PANDARIN)) pandarins++;
+                }
+            }
+        }
+        
+        this.logic.removeMatchingFruits();
+        
+        int applesAfterRemoval = 0;
+        int orangesAfterRemoval = 0;
+        int kiwisAfterRemoval = 0;
+        int pandarinsAfterRemoval = 0;
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 6; y++) {
+                if (this.logic.getGameBoard().getTile(x, y).getFruit() != null) {
+                    if (this.logic.getGameBoard().getTile(x, y).getFruit().getFruitType().equals(FruitType.APPLE)) applesAfterRemoval++;
+                    if (this.logic.getGameBoard().getTile(x, y).getFruit().getFruitType().equals(FruitType.ORANGE)) orangesAfterRemoval++;
+                    if (this.logic.getGameBoard().getTile(x, y).getFruit().getFruitType().equals(FruitType.KIWI)) kiwisAfterRemoval++;
+                    if (this.logic.getGameBoard().getTile(x, y).getFruit().getFruitType().equals(FruitType.PANDARIN)) pandarinsAfterRemoval++;
+                }
+            }
+        }
+        
+        assert(applesAfterRemoval < apples);
+        assert(orangesAfterRemoval == oranges);
+        assert(kiwisAfterRemoval == kiwis);
+        assert(pandarinsAfterRemoval == pandarins);
     }
     
     @Test
@@ -160,9 +207,9 @@ public class GameLogicTest {
         double yCoordinate = 200;
         int xTile = (int) (xCoordinate / fruitWidth);
         int yTile = (int) (yCoordinate / fruitHeight);
-        assert(logic.getGameBoard().getTile(xTile, yTile).getFruit() != null);
+        assertFalse(logic.getGameBoard().getTile(xTile, yTile).isHighlight());
         this.logic.mouseClickAtCoordinates(xCoordinate, yCoordinate);
-        assert(logic.getGameBoard().getTile(xTile, yTile).getFruit() == null);
+        assert(logic.getGameBoard().getTile(xTile, yTile).isHighlight() || logic.getGameBoard().getTile(xTile, yTile).getFruit() == null);
     }
     
     @Test

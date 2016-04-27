@@ -47,15 +47,25 @@ public class MainApp extends Application {
         
         //main loop
         new AnimationTimer() {
-            @Override
-            public void handle(long time) {
-                drawThings(gc, game);
-                doThings(game, mouseEvents, time);
+           double previousNanoTime = 0;
+           
+           @Override
+           public void handle(long currentNanoTime)
+           {
+               if (previousNanoTime == 0) {
+                  previousNanoTime = currentNanoTime;
+               return;
+               }
+               
+               double elapsedSeconds = (currentNanoTime - previousNanoTime) / 1000000000.0;
+               previousNanoTime = currentNanoTime;
+               drawThings(gc, game);
+               doThings(game, mouseEvents, elapsedSeconds);
             }
         }.start();
     }
     /**
-     * tells the board to draw itself
+     * Tells the board to draw itself.
      * @param gc graphicscontext to draw things on
      * @param game current game
      */
@@ -64,11 +74,15 @@ public class MainApp extends Application {
         game.drawEverything(gc);
     }
     
-    private void doThings(GameLogic game, Stack<MouseEvent> mouseEvents, long time) {
+    private void doThings(GameLogic game, Stack<MouseEvent> mouseEvents, double time) {
+        if (game.moves >= 20) {
+            game.score = 0;
+        }
         if (game.moves > 0) {
             handleUserInput(game, mouseEvents);
         }
         game.updateBoard(time);
+        //System.out.println("Time: "+time);
     }
     
     private void handleUserInput(GameLogic game, Stack<MouseEvent> mouseEvents) {

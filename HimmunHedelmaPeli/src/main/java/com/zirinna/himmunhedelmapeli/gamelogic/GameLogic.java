@@ -19,7 +19,6 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class GameLogic {
     private GameBoard board;
-    private UserInterface ui;
     public int moves = 20;
     public int score = 0;
     
@@ -28,7 +27,6 @@ public class GameLogic {
      */
     public GameLogic() {
         this.board = new GameBoard(6);
-        this.ui = new UserInterface();
         populateBoard(6);
     }
     
@@ -58,25 +56,15 @@ public class GameLogic {
     }
     
     /**
-     * Draws the tiles and ui.
+     * Draws the tiles and ui with the use of the abstract UserInterface class.
      * @param gc graphicscontext to draw on
      */
     public void drawEverything(GraphicsContext gc) {
-        this.drawTiles(gc);
-        this.ui.drawUI(gc, this);
+        UserInterface.drawTiles(gc, this);
+        UserInterface.drawUI(gc, this);
     }
     
-    /**
-     * Tells all the tiles on the board to draw themselves on the graphicscontext
-     * @param gc graphicscontext to draw the tiles on
-     */
-    private void drawTiles(GraphicsContext gc) {
-        for (int x = 0; x < this.board.getBoardSize(); x++) {
-            for (int y = 0; y < this.board.getBoardSize(); y++) {
-                this.board.getTile(x, y).drawTile(gc);
-            }
-        }
-    }
+
     /**
      * Handles the mouse click on given coordinates.
      * @param xCoordinate x-coordinate of the mouse click.
@@ -89,6 +77,7 @@ public class GameLogic {
         int xTile = (int) (xCoordinate / fruitWidth);
         int yTile = (int) (yCoordinate / fruitHeight);
         if (xTile >= 0 && xTile < board.getBoardSize() && yTile >= 0 && yTile < board.getBoardSize()) {
+            //highlightTile(xTile, yTile);
             removeFruit(xTile, yTile);
             moves--;
         }
@@ -100,7 +89,11 @@ public class GameLogic {
      * @param y Tile's y-coordinate
      */
     public void removeFruit(int x, int y) {
-        board.getTile(x, y).clearTile();
+        board.getTile(x, y).clearTile();        
+    }
+    
+    private void highlightTile(int x, int y) {
+        board.getTile(x, y).highlightTile();
     }
     
     public GameBoard getGameBoard() {
@@ -127,13 +120,13 @@ public class GameLogic {
      * populates the empty tiles.
      * @param time timer
      */
-    public void updateBoard(long time) {
+    public void updateBoard(double time) {
         this.removeMatchingFruits();
         while (findEmptyTile() != null) {
-            System.out.println("empty tile found at:" + findEmptyTile().getXcoordinate() + "/" + findEmptyTile().getYcoordinate());
+            //System.out.println("empty tile found at:" + findEmptyTile().getXcoordinate() + "/" + findEmptyTile().getYcoordinate());
             dropFruitDown(findEmptyTile().getXcoordinate(), findEmptyTile().getYcoordinate());
         }
-        
+        tickDownHighlighttimer(time);
     }
     
     /**
@@ -145,12 +138,12 @@ public class GameLogic {
      */
     public void dropFruitDown(int emptySpotX, int emptySpotY) {
         if (emptySpotX < 0 || emptySpotX >=  this.board.getBoardSize() || emptySpotY < 0 || emptySpotY >= this.board.getBoardSize()) {
-            System.out.println("Tried to access a tile out of bounds: " + emptySpotY + "/" + emptySpotY);
+            //System.out.println("Tried to access a tile out of bounds: " + emptySpotY + "/" + emptySpotY);
             return;
         }
         for (int y = emptySpotY - 1; y >= 0; y--) {
             if (this.board.getTile(emptySpotX, y).getFruit() != null) {
-                System.out.println("Found a fruit to drop down at " + emptySpotX + "/" + y);
+                //System.out.println("Found a fruit to drop down at " + emptySpotX + "/" + y);
                 this.board.getTile(emptySpotX, emptySpotY).setFruit(this.board.getTile(emptySpotX, y).getFruit());
                 this.board.getTile(emptySpotX, y).clearTile();
                 break;
@@ -184,12 +177,16 @@ public class GameLogic {
                 }
             }
         }       
-    }
+    }    
     /**
      * Ticks down the timer for highlighting a tile.
      * @param time 
      */
-    public void tickDownHighlighttimer(long time) {
-       //TODO     
+    private void tickDownHighlighttimer(double time) {
+       for (int x = 0; x < this.board.getBoardSize(); x++) {
+           for (int y = 0; y < this.board.getBoardSize(); y++) {
+               this.board.getTile(x, y).tickDownHighlighttimer(time);
+           }
+       }
     }
 }
