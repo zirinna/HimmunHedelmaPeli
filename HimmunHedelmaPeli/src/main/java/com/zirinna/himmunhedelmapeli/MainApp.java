@@ -1,6 +1,7 @@
 package com.zirinna.himmunhedelmapeli;
 
 import com.zirinna.himmunhedelmapeli.gamelogic.GameLogic;
+import com.zirinna.himmunhedelmapeli.userinterface.UserInterface;
 import java.util.Stack;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -71,14 +72,15 @@ public class MainApp extends Application {
      */
     private void drawThings(GraphicsContext gc, GameLogic game) {
         gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-        game.drawEverything(gc);
+        UserInterface.drawTiles(gc, game);
+        UserInterface.drawUI(gc, game);
     }
     
     private void doThings(GameLogic game, Stack<MouseEvent> mouseEvents, double time) {
-        if (game.moves >= 20) {
-            game.score = 0;
+        if (game.getMoves() >= 20) {
+            game.setScore(0);
         }
-        if (game.moves > 0) {
+        if (game.getMoves() > 0) {
             handleUserInput(game, mouseEvents);
         }
         game.updateBoard(time);

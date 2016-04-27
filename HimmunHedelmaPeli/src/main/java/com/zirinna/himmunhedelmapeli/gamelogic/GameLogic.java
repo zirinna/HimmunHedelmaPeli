@@ -19,8 +19,8 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class GameLogic {
     private GameBoard board;
-    public int moves = 20;
-    public int score = 0;
+    private int moves = 20;
+    private int score = 0;
     
     /**
      * Constructor for GameLogic.
@@ -54,16 +54,6 @@ public class GameLogic {
             default: return new Fruit(FruitType.APPLE);
         }
     }
-    
-    /**
-     * Draws the tiles and ui with the use of the abstract UserInterface class.
-     * @param gc graphicscontext to draw on
-     */
-    public void drawEverything(GraphicsContext gc) {
-        UserInterface.drawTiles(gc, this);
-        UserInterface.drawUI(gc, this);
-    }
-    
 
     /**
      * Handles the mouse click on given coordinates.
@@ -189,4 +179,21 @@ public class GameLogic {
            }
        }
     }
+
+    public int getMoves() {
+        return moves;
+    }
+
+    public void setMoves(int moves) {
+        this.moves = moves;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+    
 }
