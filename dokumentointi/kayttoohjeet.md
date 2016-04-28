@@ -1,1 +1,3 @@
-Käyttöohjeet
+##Käyttöohjeet
+
+Kaikessa yksinkertaisuudessaan peli toimii niin, että pelaaja voi klikata hiirellä hedelmää, jolloin hedelmä katoaa, ja sen yläpuolella olevat hedelmät putoavat alaspäin. Jos pelaaja saa kolme samanlaista hedelmää vaakasuoraan tai pystysuoraan riviin, nämä hedelmät katoavat ja pelaaja saa pisteitä. Pistelaskuri sekä jäljellä olevien siirtojen määrä näkyy koko ajan ikkunan oikeassa reunassa. Pelaajalla on 20 siirtoa (klikkausta), jonka jälkeen peli loppuu.
