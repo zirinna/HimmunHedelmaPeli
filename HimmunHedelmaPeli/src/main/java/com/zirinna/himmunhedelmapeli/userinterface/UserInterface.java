@@ -39,9 +39,10 @@ public abstract class UserInterface {
         
     }
     
-        /**
-     * Tells all the tiles on the board to draw themselves on the graphicscontext
-     * @param gc graphicscontext to draw the tiles on
+    /**
+     * Tells all the tiles on the board to draw themselves on the graphicscontext.
+     * @param gc graphicscontext to draw the tiles on.
+     * @param gamelogic the gamelogic to take the tiles from
      */
     public static void drawTiles(GraphicsContext gc, GameLogic gamelogic) {
         for (int x = 0; x < gamelogic.getGameBoard().getBoardSize(); x++) {

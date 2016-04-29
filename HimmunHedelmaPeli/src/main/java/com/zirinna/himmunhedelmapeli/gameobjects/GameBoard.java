@@ -29,6 +29,24 @@ public class GameBoard {
             }
         }
     }
+    
+    /**
+     * Check through all the tiles on the board,
+     * and return true if any of them are highlighted.
+     * @return True if at least one tile is Highlight. False otherwise.
+     */
+    public boolean hasHighlightTiles() {
+        for (int x = 0; x < this.gameboard.length; x++) {
+            for (int y = 0; y < this.gameboard[0].length; y++) {
+                if (gameboard[x][y].isHighlight()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+            
+    
     /**
      * When given coordinates that are on the gameboard, returns the tile on those coordinates.
      * @param x x-coordinate

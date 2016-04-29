@@ -48,20 +48,18 @@ public class MainApp extends Application {
         
         //main loop
         new AnimationTimer() {
-           double previousNanoTime = 0;
+            double previousNanoTime = 0;
            
-           @Override
-           public void handle(long currentNanoTime)
-           {
-               if (previousNanoTime == 0) {
-                  previousNanoTime = currentNanoTime;
-               return;
-               }
-               
-               double elapsedSeconds = (currentNanoTime - previousNanoTime) / 1000000000.0;
-               previousNanoTime = currentNanoTime;
-               drawThings(gc, game);
-               doThings(game, mouseEvents, elapsedSeconds);
+            @Override
+            public void handle(long currentNanoTime) {
+                if (previousNanoTime == 0) {
+                    previousNanoTime = currentNanoTime;
+                    return;
+                }
+                double elapsedSeconds = (currentNanoTime - previousNanoTime) / 1000000000.0;
+                previousNanoTime = currentNanoTime;
+                drawThings(gc, game);
+                doThings(game, mouseEvents, elapsedSeconds);
             }
         }.start();
     }

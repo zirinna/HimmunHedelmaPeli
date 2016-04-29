@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zirinna.himmunhedelmapeli.gamelogic;
 
 import com.zirinna.himmunhedelmapeli.gameobjects.GameBoard;
 import com.zirinna.himmunhedelmapeli.gameobjects.Fruit;
 import com.zirinna.himmunhedelmapeli.gameobjects.FruitType;
 import com.zirinna.himmunhedelmapeli.gameobjects.Tile;
-import com.zirinna.himmunhedelmapeli.userinterface.UserInterface;
 import java.util.Random;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class contains several methods related to the actual logic of the game.
@@ -29,7 +22,6 @@ public class GameLogic {
         this.board = new GameBoard(6);
         populateBoard(6);
     }
-    
     private void populateBoard(int size) {
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
@@ -37,7 +29,6 @@ public class GameLogic {
             }
         }
     }
-    
     /**
      * Generates a random fruit. Each fruit has roughly the same chance of being generated.
      * @return returns the randomly generated fruit
@@ -54,43 +45,35 @@ public class GameLogic {
             default: return new Fruit(FruitType.APPLE);
         }
     }
-
     /**
      * Handles the mouse click on given coordinates.
      * @param xCoordinate x-coordinate of the mouse click.
      * @param yCoordinate y-coordinate of the mouse click.
+     * @return true if the mouse click was accepted
      */
-    
-    public void mouseClickAtCoordinates(double xCoordinate, double yCoordinate) {
-        double fruitWidth = board.getTile(0, 0).getFruit().getFruitImage().getWidth();
-        double fruitHeight = board.getTile(0, 0).getFruit().getFruitImage().getHeight();
-        int xTile = (int) (xCoordinate / fruitWidth);
-        int yTile = (int) (yCoordinate / fruitHeight);
+    public boolean mouseClickAtCoordinates(double xCoordinate, double yCoordinate) {
+        if (this.board.hasHighlightTiles()) {
+            return false;  //Don't do anything if fruits are dropping down
+        }
+        int xTile = (int) (xCoordinate / board.getTile(0, 0).getFruit().getFruitImage().getWidth());
+        int yTile = (int) (yCoordinate / board.getTile(0, 0).getFruit().getFruitImage().getHeight());
         if (xTile >= 0 && xTile < board.getBoardSize() && yTile >= 0 && yTile < board.getBoardSize()) {
-            //highlightTile(xTile, yTile);
-            removeFruit(xTile, yTile);
+            highlightTile(xTile, yTile);
             moves--;
         }
+        return true;
     }
-    
     /**
-     * Clears the tile.
+     * Highlights the tile for removal
      * @param x Tile's x-coordinate
      * @param y Tile's y-coordinate
      */
-    public void removeFruit(int x, int y) {
-        System.out.println("Removing fruit at "+x+" x "+y);
-        board.getTile(x, y).clearTile();        
-    }
-    
     private void highlightTile(int x, int y) {
         board.getTile(x, y).highlightTile();
     }
-    
     public GameBoard getGameBoard() {
         return board;
     }
-    
     /**
      * Finds the first empty tile starting from lower left corner.
      * @return empty tile found, null if no empty tile was found.
@@ -105,7 +88,6 @@ public class GameLogic {
         }
         return null;
     }
-    
     /**
      * Goes through the gameboard, searches for matching fruits, removes them and
      * populates the empty tiles.
@@ -114,12 +96,10 @@ public class GameLogic {
     public void updateBoard(double time) {
         this.removeMatchingFruits();
         while (findEmptyTile() != null) {
-            //System.out.println("empty tile found at:" + findEmptyTile().getXcoordinate() + "/" + findEmptyTile().getYcoordinate());
             dropFruitDown(findEmptyTile().getXcoordinate(), findEmptyTile().getYcoordinate());
         }
         tickDownHighlighttimer(time);
     }
-    
     /**
      * Gets the fruit above the given spot, drops it down one tile and
      * clears the tile the fruit came from. If there is no empty fruit on the top
@@ -129,12 +109,10 @@ public class GameLogic {
      */
     public void dropFruitDown(int emptySpotX, int emptySpotY) {
         if (emptySpotX < 0 || emptySpotX >=  this.board.getBoardSize() || emptySpotY < 0 || emptySpotY >= this.board.getBoardSize()) {
-            //System.out.println("Tried to access a tile out of bounds: " + emptySpotY + "/" + emptySpotY);
             return;
         }
         for (int y = emptySpotY - 1; y >= 0; y--) {
             if (this.board.getTile(emptySpotX, y).getFruit() != null) {
-                //System.out.println("Found a fruit to drop down at " + emptySpotX + "/" + y);
                 this.board.getTile(emptySpotX, emptySpotY).setFruit(this.board.getTile(emptySpotX, y).getFruit());
                 this.board.getTile(emptySpotX, y).clearTile();
                 break;
@@ -145,81 +123,71 @@ public class GameLogic {
         }
     }
     /**
-     * Goes through the gameboard and searches for matching fruits, removes the matching
-     * fruits.
+     * Check through all the tiles, and remove horizontal and vertical matches.
      */
-    
-    /*public void removeMatchingFruits() {
-        for (int x = 0; x < this.board.getBoardSize(); x++) {
-            for (int y = 0; y < this.board.getBoardSize(); y++) {
-                boolean horiMatch = GameRules.checkForHorizontalMatch(x, y, this.board);
-                boolean vertiMatch = GameRules.checkForVerticalMatch(x, y, this.board);
-                if (horiMatch) {
-                    this.removeFruit(x - 1, y);
-                    this.removeFruit(x, y);
-                    this.removeFruit(x + 1, y);
-                    score++;
-                }
-                if (vertiMatch) {
-                    this.removeFruit(x, y - 1);
-                    this.removeFruit(x, y);
-                    this.removeFruit(x, y + 1);
-                    score++;
-                    
-                }
-            }
-        }       
-    }
-    */
     public void removeMatchingFruits() {
         for (int x = 0; x < this.board.getBoardSize(); x++) {
             for (int y = 0; y < this.board.getBoardSize(); y++) {
                 int horiMatch = GameRules.checkForHorizontalMatch(x, y, this.board);
                 int vertiMatch = GameRules.checkForVerticalMatch(x, y, this.board);
                 if (horiMatch >= 3) {
-                    for (int i = 0; i < horiMatch; i++ ) {
-                        this.removeFruit(x + i, y);
-                        score++;
-                    }
+                    removeFruitsByHighlight(x, y, horiMatch, true);
                 }
                 if (vertiMatch >= 3) {
-                    for (int i = 0; i < vertiMatch; i++ ) {
-                        this.removeFruit(x, y + i);
-                        score++;
-                    }
+                    removeFruitsByHighlight(x, y, vertiMatch, false);
                 }
             }
         }       
     }
-    
-    
-    
+    /**
+     * Remove a number of fruits (either horizontal or vertical)
+     * by triggering their Highlight. This results in "delayed removal"
+     * in the game.
+     * @param x starting point of the removal
+     * @param y starting point of the removal
+     * @param number how many fruits are removed
+     * @param horizontal if true, removal is done horizontal, if false, removal is done vertical
+     * @return 
+     */
+    private boolean removeFruitsByHighlight(int x, int y, int number, boolean horizontal) {
+        if (horizontal) {
+            for (int i = 0; i < number; i++) {
+                if (!this.board.getTile(x + i, y).isHighlight()) {
+                    this.highlightTile(x + i, y);
+                    score++;
+                }
+            }
+        } else {
+            for (int i = 0; i < number; i++) {
+                if (!this.board.getTile(x, y + i).isHighlight()) {
+                    this.highlightTile(x, y + i);
+                    score++;
+                }
+            }
+        }
+        return true;
+    }
     /**
      * Ticks down the timer for highlighting a tile.
      * @param time 
      */
     private void tickDownHighlighttimer(double time) {
-       for (int x = 0; x < this.board.getBoardSize(); x++) {
-           for (int y = 0; y < this.board.getBoardSize(); y++) {
-               this.board.getTile(x, y).tickDownHighlighttimer(time);
-           }
-       }
+        for (int x = 0; x < this.board.getBoardSize(); x++) {
+            for (int y = 0; y < this.board.getBoardSize(); y++) {
+                this.board.getTile(x, y).tickDownHighlighttimer(time);
+            }
+        }
     }
-
     public int getMoves() {
         return moves;
     }
-
     public void setMoves(int moves) {
         this.moves = moves;
     }
-
     public int getScore() {
         return score;
     }
-
     public void setScore(int score) {
         this.score = score;
     }
-    
 }
