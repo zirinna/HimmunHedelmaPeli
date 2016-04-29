@@ -79,6 +79,7 @@ public class GameLogic {
      * @param y Tile's y-coordinate
      */
     public void removeFruit(int x, int y) {
+        System.out.println("Removing fruit at "+x+" x "+y);
         board.getTile(x, y).clearTile();        
     }
     
@@ -147,7 +148,8 @@ public class GameLogic {
      * Goes through the gameboard and searches for matching fruits, removes the matching
      * fruits.
      */
-    public void removeMatchingFruits() {
+    
+    /*public void removeMatchingFruits() {
         for (int x = 0; x < this.board.getBoardSize(); x++) {
             for (int y = 0; y < this.board.getBoardSize(); y++) {
                 boolean horiMatch = GameRules.checkForHorizontalMatch(x, y, this.board);
@@ -167,7 +169,31 @@ public class GameLogic {
                 }
             }
         }       
-    }    
+    }
+    */
+    public void removeMatchingFruits() {
+        for (int x = 0; x < this.board.getBoardSize(); x++) {
+            for (int y = 0; y < this.board.getBoardSize(); y++) {
+                int horiMatch = GameRules.checkForHorizontalMatch(x, y, this.board);
+                int vertiMatch = GameRules.checkForVerticalMatch(x, y, this.board);
+                if (horiMatch >= 3) {
+                    for (int i = 0; i < horiMatch; i++ ) {
+                        this.removeFruit(x + i, y);
+                        score++;
+                    }
+                }
+                if (vertiMatch >= 3) {
+                    for (int i = 0; i < vertiMatch; i++ ) {
+                        this.removeFruit(x, y + i);
+                        score++;
+                    }
+                }
+            }
+        }       
+    }
+    
+    
+    
     /**
      * Ticks down the timer for highlighting a tile.
      * @param time 

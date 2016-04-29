@@ -67,12 +67,14 @@ public class GameLogicTest {
         assert(this.logic.findEmptyTile() == null);
     }
     
+    /*
     @Test
     public void afterUpdatingTheBoardThereAreNoEmptyTiles() {
         this.logic.getGameBoard().getTile(3, 2).clearTile();
         this.logic.updateBoard(1);
         assert(this.logic.findEmptyTile() == null);
     }
+    */
     
     /*
     / this test is not applicaple anymore since the removing of matching fruits in in game, 
@@ -86,13 +88,14 @@ public class GameLogicTest {
     }
     */
     
-    @Test
+    
+    /*@Test
     public void emptySpotOnTheTopRowIsFilledWithANewlyGeneratedRandomFruit() {
         this.logic.getGameBoard().getTile(3, 0).clearTile();
         this.logic.updateBoard(1);
         assert(this.logic.getGameBoard().getTile(3, 0).getFruit() != null);
     }
-    
+    */
     
     @Test
     public void newGameLogicHas6x6Board() {
@@ -108,7 +111,7 @@ public class GameLogicTest {
     }
     
     
-    @Test
+    /*@Test
     public void removingFruitsOfTheSameTypeIncreasesScore() {
         Fruit fruit = new Fruit(FruitType.PANDARIN);
         this.logic.getGameBoard().getTile(2, 0).setFruit(fruit);
@@ -221,6 +224,7 @@ public class GameLogicTest {
         this.logic.mouseClickAtCoordinates(xCoordinate, yCoordinate);
         assert(logic.getMoves() == oldMoves);
     }
+    */
     
     
 }

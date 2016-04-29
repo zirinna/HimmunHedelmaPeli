@@ -46,7 +46,7 @@ public class GameRulesTest {
     public void tearDown() {
     }
     
-    @Test
+    /*@Test
     public void cantCheckForHorizontalMatchOutsideGameBoard() {
         boolean shouldBeFalse = GameRules.checkForHorizontalMatch(4658, 999, logic.getGameBoard());
         assertFalse(shouldBeFalse);
@@ -70,8 +70,9 @@ public class GameRulesTest {
         boolean shouldBeFalse = GameRules.checkForHorizontalMatch(-31, -12, logic.getGameBoard());
         assertFalse(shouldBeFalse);
     }
+    */
     
-    @Test
+    /*@Test
     public void horizontalMatchRemovesMatchingTiles() {
         Fruit fruit = new Fruit(FruitType.ORANGE);
         this.logic.getGameBoard().getTile(0, 3).setFruit(fruit);
@@ -95,7 +96,7 @@ public class GameRulesTest {
         //assert(logic.getGameBoard().getTile(1, 4).getFruit() == null);
     }
     
-    @Test
+    /*@Test
     public void horizontalMatchDoesntMatchEmptyTiles() {
         this.logic.getGameBoard().getTile(1, 2).setFruit(null);
         assertFalse(GameRules.checkForHorizontalMatch(1, 2, this.logic.getGameBoard()));
@@ -124,5 +125,6 @@ public class GameRulesTest {
         this.logic.getGameBoard().getTile(1, 4).setFruit(fruit);
         assert(GameRules.checkForVerticalMatch(1, 3, this.logic.getGameBoard()));
     }
+    */
     
 }
