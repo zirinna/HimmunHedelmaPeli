@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 public class Fruit {
     private FruitType type;
     private Image image;
+    private char c;
     
     /**
      * Constructor.
@@ -27,17 +28,35 @@ public class Fruit {
     
     private void setImageByType() {
         switch (this.type) {
-            case BANANA: this.image = new Image("/images/banana.png");
+            case BANANA: setImage("/images/banana.png");
+                this.c = 'B';
                 break;
-            case APPLE: this.image = new Image("/images/apple.png");
+            case APPLE: setImage("/images/apple.png");
+                this.c = 'A';
                 break;
-            case KIWI: this.image = new Image("/images/kiwi.png");
+            case KIWI: setImage("/images/kiwi.png");
+                this.c = 'K';
                 break;
-            case ORANGE: this.image = new Image("/images/orange.png");
+            case ORANGE: setImage("/images/orange.png");
+                this.c = 'O';
                 break;
-            case PANDARIN: this.image = new Image("/images/pandarin.png");
+            case PANDARIN: setImage("/images/pandarin.png");
+                this.c = 'P';
                 break;
             default: break;
+        }
+    }
+
+    public String getFruitLetter() {
+        return "" + c;
+    }
+    
+    
+    private void setImage(String imagePath) {
+        try {
+            this.image = new Image(imagePath);
+        } catch (Exception e) {
+            
         }
     }
     

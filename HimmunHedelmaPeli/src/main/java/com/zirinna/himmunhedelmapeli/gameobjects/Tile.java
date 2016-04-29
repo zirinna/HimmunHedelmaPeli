@@ -56,8 +56,13 @@ public class Tile {
         if (this.highlighttime > 0) {
             return;
         }
-        gc.drawImage(this.fruit.getFruitImage(), x * this.fruit.getFruitImage().getWidth(), y * this.fruit.getFruitImage().getHeight());
-        //gc.fillText(this.x + "/" + this.y, x * image.getWidth() + 20, y * image.getHeight() + 20);
+        if (this.fruit.getFruitImage() != null) {
+            gc.drawImage(this.fruit.getFruitImage(), x * this.fruit.getFruitImage().getWidth(), y * this.fruit.getFruitImage().getHeight());
+        } else {
+            gc.fillText(this.fruit.getFruitLetter(), (x * 64) + 20, (y * 64) + 30 );
+        }
+            
+                
     }
     
     /**

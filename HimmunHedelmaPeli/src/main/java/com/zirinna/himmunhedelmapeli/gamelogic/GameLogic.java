@@ -55,8 +55,8 @@ public class GameLogic {
         if (this.board.hasHighlightTiles()) {
             return false;  //Don't do anything if fruits are dropping down
         }
-        int xTile = (int) (xCoordinate / board.getTile(0, 0).getFruit().getFruitImage().getWidth());
-        int yTile = (int) (yCoordinate / board.getTile(0, 0).getFruit().getFruitImage().getHeight());
+        int xTile = (int) (xCoordinate / 64);
+        int yTile = (int) (yCoordinate / 64);
         if (xTile >= 0 && xTile < board.getBoardSize() && yTile >= 0 && yTile < board.getBoardSize()) {
             highlightTile(xTile, yTile);
             moves--;
