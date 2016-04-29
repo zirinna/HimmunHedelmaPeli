@@ -21,3 +21,4 @@ päivä | tunnit | kuvaus
 26.04.2016 | 3h | yritystä hidastaa putoavia/poistettavia hedelmiä, vaatii lisää työtä
 27.04.2016 | 2h | koodin uudelleenjärjestelyä, pakattu jar huomista esittelyä varten
 28.04.2016 | 6h | useamman kuin kolmen hedelmän match, hedelmien putoamisen hidastus
+28.04.2016 | 5h | testejä, koodin siivousta
