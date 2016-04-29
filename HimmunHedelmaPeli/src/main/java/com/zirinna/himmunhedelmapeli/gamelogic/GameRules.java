@@ -25,7 +25,6 @@ public class GameRules {
     public static int checkForHorizontalMatch(int x, int y, GameBoard board) {
         //checks that x is on board (inside bounds)
         if (x < 0 || x >= board.getBoardSize()) {
-            System.out.println("Tried to access a tile out of bounds: x=" + x);
             return 0;
         }
         if (board.getTile(x, y).getFruit() == null) {
@@ -45,9 +44,6 @@ public class GameRules {
                 i++;
             }
         }
-        if (i >= 3) {
-            System.out.println("Found a row of " + i + " - Y:" + y + " X, from:" + x + " to " + (x + i));
-        }
         return i;
     }
 
@@ -61,7 +57,6 @@ public class GameRules {
      */
     public static int checkForVerticalMatch(int x, int y, GameBoard board) {
         if (y < 0 || y >= board.getBoardSize()) { //checks that y is on board (inside bounds)
-            //System.out.println("Tried to access a tile out of bounds: y=" + y);
             return 0;
         }
         if (board.getTile(x, y).getFruit() == null) {
@@ -80,7 +75,6 @@ public class GameRules {
                 i++;
             }
         }
-        //if (i>=3)System.out.println("Found a column of "+i+" - Y:"+y+" X, from:"+x+" to "+(x+i));
         return i;
     }
     

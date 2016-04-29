@@ -74,20 +74,7 @@ public class GameLogic {
     public GameBoard getGameBoard() {
         return board;
     }
-    /**
-     * Finds the first empty tile starting from lower left corner.
-     * @return empty tile found, null if no empty tile was found.
-     */
-    public Tile findEmptyTile() {
-        for (int x = 0; x < this.board.getBoardSize(); x++) {
-            for (int y = this.board.getBoardSize() - 1; y >= 0; y--) {
-                if (this.board.getTile(x, y).getFruit() == null) {
-                    return this.board.getTile(x, y);
-                }
-            }
-        }
-        return null;
-    }
+    
     /**
      * Goes through the gameboard, searches for matching fruits, removes them and
      * populates the empty tiles.
@@ -95,8 +82,8 @@ public class GameLogic {
      */
     public void updateBoard(double time) {
         this.removeMatchingFruits();
-        while (findEmptyTile() != null) {
-            dropFruitDown(findEmptyTile().getXcoordinate(), findEmptyTile().getYcoordinate());
+        while (board.findEmptyTile() != null) {
+            dropFruitDown(board.findEmptyTile().getXcoordinate(), board.findEmptyTile().getYcoordinate());
         }
         tickDownHighlighttimer(time);
     }

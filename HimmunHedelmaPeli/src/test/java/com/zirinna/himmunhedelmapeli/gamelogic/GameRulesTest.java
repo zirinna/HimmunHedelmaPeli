@@ -79,9 +79,9 @@ public class GameRulesTest {
         this.logic.getGameBoard().getTile(1, 3).setFruit(fruit);
         this.logic.getGameBoard().getTile(2, 3).setFruit(fruit);
         this.logic.removeMatchingFruits();
-        //assert(logic.getGameBoard().getTile(0, 3).getFruit() == null);
-        //assert(logic.getGameBoard().getTile(1, 3).getFruit() == null);
-        //assert(logic.getGameBoard().getTile(2, 3).getFruit() == null);
+        assert(logic.getGameBoard().getTile(0, 3).isHighlight());
+        assert(logic.getGameBoard().getTile(1, 3).isHighlight());
+        assert(logic.getGameBoard().getTile(2, 3).isHighlight());
     }
     
     @Test
@@ -91,9 +91,9 @@ public class GameRulesTest {
         this.logic.getGameBoard().getTile(1, 3).setFruit(fruit);
         this.logic.getGameBoard().getTile(1, 4).setFruit(fruit);
         this.logic.removeMatchingFruits();
-        //assert(logic.getGameBoard().getTile(1, 2).getFruit() == null);
-        //assert(logic.getGameBoard().getTile(1, 3).getFruit() == null);
-        //assert(logic.getGameBoard().getTile(1, 4).getFruit() == null);
+        assert(logic.getGameBoard().getTile(1, 2).isHighlight());
+        assert(logic.getGameBoard().getTile(1, 3).isHighlight());
+        assert(logic.getGameBoard().getTile(1, 4).isHighlight());
     }
     
     @Test

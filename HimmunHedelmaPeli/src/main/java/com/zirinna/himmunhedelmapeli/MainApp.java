@@ -33,8 +33,6 @@ public class MainApp extends Application {
         
         final GameLogic game = new GameLogic();
         final Stack<MouseEvent> mouseEvents = new Stack<>();
-        //game.printBoard();
-        
         
         //setup listeners
         scene.setOnMouseClicked(
@@ -73,7 +71,7 @@ public class MainApp extends Application {
         UserInterface.drawTiles(gc, game);
         UserInterface.drawUI(gc, game);
     }
-    
+
     private void doThings(GameLogic game, Stack<MouseEvent> mouseEvents, double time) {
         if (game.getMoves() >= 20) {
             game.setScore(0);
@@ -82,7 +80,6 @@ public class MainApp extends Application {
             handleUserInput(game, mouseEvents);
         }
         game.updateBoard(time);
-        //System.out.println("Time: "+time);
     }
     
     private void handleUserInput(GameLogic game, Stack<MouseEvent> mouseEvents) {

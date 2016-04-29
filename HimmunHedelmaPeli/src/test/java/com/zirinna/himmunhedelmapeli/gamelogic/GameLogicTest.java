@@ -58,12 +58,12 @@ public class GameLogicTest {
     @Test
     public void findEmptyTileFindsEmptyTile() {
         this.logic.getGameBoard().getTile(2, 2).clearTile();
-        assert(this.logic.findEmptyTile() != null);
+        assert(this.logic.getGameBoard().findEmptyTile() != null);
     }
     
     @Test
     public void findEmptyTileDoesNotFindEmptyTilesIfThereAreNoEmptyTiles() {
-        assert(this.logic.findEmptyTile() == null);
+        assert(this.logic.getGameBoard().findEmptyTile() == null);
     }
     
     
@@ -72,7 +72,7 @@ public class GameLogicTest {
         this.logic.updateBoard(1);
         this.logic.getGameBoard().getTile(3, 2).clearTile();
         this.logic.updateBoard(1);
-        assert(this.logic.findEmptyTile() == null);
+        assert(this.logic.getGameBoard().findEmptyTile() == null);
     }
     
     
@@ -121,6 +121,34 @@ public class GameLogicTest {
         assert(this.logic.getGameBoard().getTile(0, 3).isHighlight());
     }
     
+    @Test
+    public void horizontalFruitsAreRemovedAtCornersOfTheBoard() {
+        Fruit fruit = new Fruit(FruitType.PANDARIN);
+        this.logic.getGameBoard().getTile(3, 5).setFruit(fruit);
+        this.logic.getGameBoard().getTile(4, 5).setFruit(fruit);
+        this.logic.getGameBoard().getTile(5, 5).setFruit(fruit);
+        this.logic.removeMatchingFruits();
+        assert(this.logic.getGameBoard().getTile(5, 5).isHighlight());
+    }
+    
+    @Test
+    public void verticalFruitsAreRemovedAtCornersOfTheBoard() {
+        Fruit fruit = new Fruit(FruitType.PANDARIN);
+        this.logic.getGameBoard().getTile(5, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(5, 4).setFruit(fruit);
+        this.logic.getGameBoard().getTile(5, 5).setFruit(fruit);
+        this.logic.removeMatchingFruits();
+        assert(this.logic.getGameBoard().getTile(5, 5).isHighlight());
+    }
+    
+    @Test
+    public void highlightTimerTicksDownOnUpdate() {
+        logic.getGameBoard().getTile(0, 0).highlightTile();
+        logic.updateBoard(0.1);
+        assert(logic.getGameBoard().getTile(0, 0).isHighlight());
+        logic.updateBoard(1);
+        assertFalse(logic.getGameBoard().getTile(0, 0).isHighlight());
+    }
     
     @Test
     public void scoreRisesWhenMatchingFruitsAreFound() {
@@ -170,10 +198,56 @@ public class GameLogicTest {
     }
     
     @Test
+    public void usingMovesUpdatesRemainingMoves() {
+        logic.removeMatchingFruits();
+        logic.updateBoard(1);
+        int oldMoves = logic.getMoves();
+        logic.mouseClickAtCoordinates(100, 100);
+        int moves = logic.getMoves();
+        assert(moves < oldMoves);
+    }
+    
+    @Test
     public void mouseClicksAreNotAcceptedDuringHighlight() {
         logic.getGameBoard().getTile(0, 0).highlightTile();
         boolean shouldBeFalse = logic.mouseClickAtCoordinates(0, 0);
         assertFalse(shouldBeFalse);
     }
     
+    @Test
+    public void whenTileIsHighlightByMatchScoreIsUpdated() {
+        int oldScore = logic.getScore();
+        Fruit fruit = new Fruit(FruitType.PANDARIN);
+        this.logic.getGameBoard().getTile(0, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(1, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(2, 3).setFruit(fruit);
+        logic.removeMatchingFruits();
+        assert(logic.getScore() > oldScore);
+    }
+    
+    @Test 
+    public void correctTilesAreHighLightedOnHorizontalRemoval() {
+        Fruit fruit = new Fruit(FruitType.PANDARIN);
+        this.logic.getGameBoard().getTile(0, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(1, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(2, 3).setFruit(fruit);
+        logic.removeMatchingFruits();
+        assert(logic.getGameBoard().getTile(0, 3).isHighlight() 
+                && logic.getGameBoard().getTile(1, 3).isHighlight() 
+                && logic.getGameBoard().getTile(2, 3).isHighlight()
+        );
+    }
+    
+    @Test 
+    public void correctTilesAreHighLightedOnVerticalRemoval() {
+        Fruit fruit = new Fruit(FruitType.PANDARIN);
+        this.logic.getGameBoard().getTile(1, 2).setFruit(fruit);
+        this.logic.getGameBoard().getTile(1, 3).setFruit(fruit);
+        this.logic.getGameBoard().getTile(1, 4).setFruit(fruit);
+        logic.removeMatchingFruits();
+        assert(logic.getGameBoard().getTile(1, 2).isHighlight() 
+                && logic.getGameBoard().getTile(1, 3).isHighlight() 
+                && logic.getGameBoard().getTile(1, 4).isHighlight()
+        );
+    }
 }

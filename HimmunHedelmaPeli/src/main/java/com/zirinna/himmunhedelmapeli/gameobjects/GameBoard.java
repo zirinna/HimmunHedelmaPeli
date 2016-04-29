@@ -46,6 +46,20 @@ public class GameBoard {
         return false;
     }
             
+    /**
+     * Finds the first empty tile starting from lower left corner.
+     * @return empty tile found, null if no empty tile was found.
+     */
+    public Tile findEmptyTile() {
+        for (int x = 0; x < gameboard.length; x++) {
+            for (int y = gameboard.length - 1; y >= 0; y--) {
+                if (gameboard[x][y].getFruit() == null) {
+                    return gameboard[x][y];
+                }
+            }
+        }
+        return null;
+    }
     
     /**
      * When given coordinates that are on the gameboard, returns the tile on those coordinates.

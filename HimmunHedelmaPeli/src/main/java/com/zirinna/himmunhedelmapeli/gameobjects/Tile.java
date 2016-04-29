@@ -56,13 +56,7 @@ public class Tile {
         if (this.highlighttime > 0) {
             return;
         }
-        if (this.fruit.getFruitImage() != null) {
-            gc.drawImage(this.fruit.getFruitImage(), x * this.fruit.getFruitImage().getWidth(), y * this.fruit.getFruitImage().getHeight());
-        } else {
-            gc.fillText(this.fruit.getFruitLetter(), (x * 64) + 20, (y * 64) + 30 );
-        }
-            
-                
+        gc.drawImage(this.fruit.getFruitImage(), x * this.fruit.getFruitImage().getWidth(), y * this.fruit.getFruitImage().getHeight());
     }
     
     /**
@@ -98,7 +92,11 @@ public class Tile {
             this.highlightClear();
         }
     }
-    
+
+    /**
+     * Tells if the highlighttimer is on.
+     * @return true if the highlighttime is bigger than zero.
+     */
     public boolean isHighlight() {
         return (this.highlighttime > 0);
     }
