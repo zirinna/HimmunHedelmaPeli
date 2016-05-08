@@ -5,7 +5,7 @@
 * **mitä pitäisi tapahtua:** Peli ei saa kaatua ja hedelmien pitää poistua oikein.
 * **mitä tehtiin:** Avasin uuden pelin ja kliksuttelin pelikenttää sekä hiiren vasemmalla että oikealla niin nopeasti kuin pystyin.
 * **mitä tapahtui:** Peli ei kaatunut, mutta kun siirrot ovat loppu ja peli loppuu, game over -ilmoitus lätkähtää ruudulle ennen kuin kaikki hedelmät ovat pudonneet alas.
-* **tuomio:** Näyttää vähän tyhmältä, mutta ei ole varsinaisesti bugi
+* **tuomio:** Näyttää vähän tyhmältä, mutta ei ole varsinaisesti bugi.
 
 ##testitapaus: Hiirellä klikkaaminen varsinaisen pelikentän ulkopuolella
 * **pvm:** 8.5.2016
@@ -21,9 +21,17 @@
 * **mitä tapahtui:** Ei mitään, peli ei kaatunut eikä hedelmä poistunut.
 * **tuomio:** Toimii oikein.
 
+##testitapaus: Hiiren painikkeen painaminen alas hedelmän päällä ja sitten hiiren kursorin vetäminen toisen hedelmän päälle
+* **pvm:** 8.5.2016
+* **mitä pitäisi tapahtua:** Jälkimmäisen hedelmän pitäisi poistua.
+* **mitä tehtiin:** Avasin uuden pelin. Painoin hiiren vasemman painikkeen kentällä olevan hedelmän päällä alas ja raahasin kursorin toisen hedelmän päälle.
+* **mitä tapahtui:** Jälkimmäinen hedelmä katosi.
+* **tuomio:** Toimii oikein.
+
 ##testitapaus: Peli-ikkunan koon muuttaminen
 * **pvm:** 8.5.2016
 * **mitä pitäisi tapahtua:** Peli ei kaadu.
 * **mitä tehtiin:** Avasin uuden pelin. Suurensin ja pienensin peli-ikkunaa ottamalla kiinni ikkunan kulmasta hiirellä ja vetämällä.
 * **mitä tapahtui:** Peli ei kaadu.
 * **tuomio:** Toimii oikein.
+
