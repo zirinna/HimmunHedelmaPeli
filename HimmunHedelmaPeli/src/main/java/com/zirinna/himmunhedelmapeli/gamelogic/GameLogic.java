@@ -22,6 +22,7 @@ public class GameLogic {
         this.board = new GameBoard(6);
         populateBoard(6);
     }
+    
     private void populateBoard(int size) {
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
@@ -29,6 +30,7 @@ public class GameLogic {
             }
         }
     }
+    
     /**
      * Generates a random fruit. Each fruit has roughly the same chance of being generated.
      * @return returns the randomly generated fruit
@@ -45,6 +47,7 @@ public class GameLogic {
             default: return new Fruit(FruitType.APPLE);
         }
     }
+    
     /**
      * Handles the mouse click on given coordinates.
      * @param xCoordinate x-coordinate of the mouse click.
@@ -63,6 +66,7 @@ public class GameLogic {
         }
         return true;
     }
+    
     /**
      * Highlights the tile for removal
      * @param x Tile's x-coordinate
@@ -71,6 +75,7 @@ public class GameLogic {
     private void highlightTile(int x, int y) {
         board.getTile(x, y).highlightTile();
     }
+    
     public GameBoard getGameBoard() {
         return board;
     }
@@ -87,6 +92,7 @@ public class GameLogic {
         }
         tickDownHighlighttimer(time);
     }
+    
     /**
      * Gets the fruit above the given spot, drops it down one tile and
      * clears the tile the fruit came from. If there is no empty fruit on the top
@@ -109,6 +115,7 @@ public class GameLogic {
             this.board.getTile(emptySpotX, 0).setFruit(generateRandomFruit());
         }
     }
+    
     /**
      * Check through all the tiles, and remove horizontal and vertical matches.
      */
@@ -126,8 +133,9 @@ public class GameLogic {
             }
         }       
     }
+    
     /**
-     * Remove a number of fruits (either horizontal or vertical)
+     * Removes a number of fruits (either horizontal or vertical)
      * by triggering their Highlight. This results in "delayed removal"
      * in the game.
      * @param x starting point of the removal
@@ -154,8 +162,9 @@ public class GameLogic {
         }
         return true;
     }
+    
     /**
-     * Ticks down the timer for highlighting a tile.
+     * Ticks down the timer for highlighting a tile for removal.
      * @param time 
      */
     private void tickDownHighlighttimer(double time) {
@@ -165,15 +174,19 @@ public class GameLogic {
             }
         }
     }
+    
     public int getMoves() {
         return moves;
     }
+    
     public void setMoves(int moves) {
         this.moves = moves;
     }
+    
     public int getScore() {
         return score;
     }
+    
     public void setScore(int score) {
         this.score = score;
     }

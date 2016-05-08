@@ -14,14 +14,14 @@ import com.zirinna.himmunhedelmapeli.gameobjects.GameBoard;
  */
 public class GameRules {
     
-    /**
-     * Checks if the fruit on a tile on given coordinates x,y has a fruit of the same type
-     * on it's right and left side.
-     * @param x x-coordinate
-     * @param y y-coordinate
-     * @param board gameboard to check for matches on
-     * @return True if a match was found, false otherwise.
-     */   
+/**
+* Checks if the fruit on a tile on given coordinates x,y has a fruit of the same type
+* on its right side and how many similar fruits there are.
+* @param x x-coordinate of a given tile
+* @param y y-coordinate of a given tile
+* @param board gameboard to check for matches on
+* @return the number of similar fruits
+*/   
     public static int checkForHorizontalMatch(int x, int y, GameBoard board) {
         //checks that x is on board (inside bounds)
         if (x < 0 || x >= board.getBoardSize()) {
@@ -49,11 +49,11 @@ public class GameRules {
 
     /**
      * Checks if the fruit on a tile on given coordinates x,y has a fruit of the same type.
-     * on top of it and under it.
-     * @param x x-coordinate
-     * @param y y-coordinate
+     * on top of it and how many similar fruits there are.
+     * @param x x-coordinate of a given tile
+     * @param y y-coordinate of a given tile
      * @param board gameboard to check for matches on
-     * @return true if a match was found, false otherwise
+     * @return the numbers of similar fruits
      */
     public static int checkForVerticalMatch(int x, int y, GameBoard board) {
         if (y < 0 || y >= board.getBoardSize()) { //checks that y is on board (inside bounds)

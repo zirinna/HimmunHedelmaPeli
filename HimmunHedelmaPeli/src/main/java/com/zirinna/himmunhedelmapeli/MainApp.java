@@ -71,7 +71,12 @@ public class MainApp extends Application {
         UserInterface.drawTiles(gc, game);
         UserInterface.drawUI(gc, game);
     }
-
+    /**
+     * Actions that the main loop takes care of other than drawing.
+     * @param game current game
+     * @param mouseEvents stack of mouse events
+     * @param time time
+     */
     private void doThings(GameLogic game, Stack<MouseEvent> mouseEvents, double time) {
         if (game.getMoves() >= 20) {
             game.setScore(0);

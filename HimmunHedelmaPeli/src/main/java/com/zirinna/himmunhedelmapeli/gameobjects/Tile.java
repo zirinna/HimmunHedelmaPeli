@@ -73,6 +73,9 @@ public class Tile {
         this.highlighttime = 0.4;
     }
     
+    /**
+     * Removes the fruit.
+     */
     private void highlightClear() {
         this.fruit = null;
     }
