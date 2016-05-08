@@ -22,3 +22,4 @@ päivä | tunnit | kuvaus
 27.04.2016 | 2h | koodin uudelleenjärjestelyä, pakattu jar huomista esittelyä varten
 28.04.2016 | 6h | useamman kuin kolmen hedelmän match, hedelmien putoamisen hidastus
 28.04.2016 | 5h | testejä, koodin siivousta
+08.05.2016 | 2h | dokumentoinnin päivitystä
