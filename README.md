@@ -1,9 +1,9 @@
 ﻿# HimmunHedelmaPeli
-ohjelmoinnin harkkatyö
+Ohjelmoinnin harkkatyö
 
-Himmun Hedelmäpeli on pieni kliksuttelupeli, jossa pelaaja yrittää saada 3 tai useamman samanlaisen hedelmän laudalla riviin syömällä laudalta hedelmiä pois.
+Himmun Hedelmäpeli on pieni kliksuttelupeli, jossa pelaaja yrittää saada kolme tai enemmän samanlaisia hedelmiä laudalla vaakasuoraan tai pystysuoraan riviin syömällä laudalta hedelmiä pois.
 
-Huom! Vaatii Java8:n (JavaFX:n takia).
+**Huom!** Vaatii Java8:n (JavaFX:n takia).
 
 
 ##Dokumentaatio
