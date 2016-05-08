@@ -14,17 +14,17 @@
 * **mitä tapahtui:** Ei tapahtunut mitään, peli ei kaatunut.
 * **tuomio:** Toimii oikein.
 
-##testitapaus: Hiiren painikkeen painaminen alas kentällä ja sitten hiiren kursorin vetäminen ulos peli-ikkunasta
+##testitapaus: Hiiren painikkeen painaminen alas kentällä ja sitten hiiren kursorin vieminen ulos peli-ikkunasta
 * **pvm:** 8.5.2016
 * **mitä pitäisi tapahtua:** Ei mitään, peli ei saa kaatua eikä hedelmiä kuulu poistua laudalta.
-* **mitä tehtiin:** Avasin uuden pelin. Painoin hiiren vasemman painikkeen kentällä olevan hedelmän päällä alas ja raahasin sitten kursorin ulos peli-ikkunasta. Toistin hiiren oikealla.
+* **mitä tehtiin:** Avasin uuden pelin. Painoin hiiren vasemman painikkeen kentällä olevan hedelmän päällä alas. Raahasin sitten kursorin ulos peli-ikkunasta ja vapautin painikkeen. Toistin hiiren oikealla.
 * **mitä tapahtui:** Ei mitään, peli ei kaatunut eikä hedelmä poistunut.
 * **tuomio:** Toimii oikein.
 
-##testitapaus: Hiiren painikkeen painaminen alas hedelmän päällä ja sitten hiiren kursorin vetäminen toisen hedelmän päälle
+##testitapaus: Hiiren painikkeen painaminen alas hedelmän päällä ja sitten hiiren kursorin vieminen toisen hedelmän päälle
 * **pvm:** 8.5.2016
 * **mitä pitäisi tapahtua:** Jälkimmäisen hedelmän pitäisi poistua.
-* **mitä tehtiin:** Avasin uuden pelin. Painoin hiiren vasemman painikkeen kentällä olevan hedelmän päällä alas ja raahasin kursorin toisen hedelmän päälle.
+* **mitä tehtiin:** Avasin uuden pelin. Painoin hiiren vasemman painikkeen kentällä olevan hedelmän päällä alas. Raahasin kursorin toisen hedelmän päälle ja vapautin painikkeen.
 * **mitä tapahtui:** Jälkimmäinen hedelmä katosi.
 * **tuomio:** Toimii oikein.
 
