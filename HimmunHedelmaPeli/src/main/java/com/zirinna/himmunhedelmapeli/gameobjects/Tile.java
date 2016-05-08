@@ -74,13 +74,6 @@ public class Tile {
     }
     
     /**
-     * Removes the fruit.
-     */
-    private void highlightClear() {
-        this.fruit = null;
-    }
-    
-    /**
      * Tick down the highlight timer on this tile, signalling
      * it to clear the tile if the timer gets to zero.
      * @param time Passed time in seconds
@@ -92,7 +85,7 @@ public class Tile {
         this.highlighttime = highlighttime - time;
         if (highlighttime < 0)  {
             highlighttime = 0;
-            this.highlightClear();
+            this.clearTile();
         }
     }
 
